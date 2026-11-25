@@ -1,0 +1,810 @@
+/* ibravoice — واجهة متجر ابراهيم اليوسف (تعليق صوتي) · v1 */
+(function () {
+  if (window.__IBRA__) return;
+  window.__IBRA__ = true;
+
+  var C = {
+    wa: '966545057115',
+    handle: 'ibralyousef',
+    hero: 'a', /* معتمد 2026-11-25: البنر الهادي */
+    audioBase: window.IBRA_AUDIO_BASE || 'https://cdn.jsdelivr.net/gh/brhomy4080-wq/ibravoice-samples@v1/',
+    links: {
+      vo: '/products/VO',
+      vip: '/products/VIP',
+      p5: '/products/5071dee8-5e71-4914-8ab3-42af4b2e25d9/',
+      p10: '/products/b894de85-9208-4b12-94ae-576affa2cdc5/',
+      p20: '/products/9ba65d77-b2e2-41aa-b4e7-e6305be7aa95/',
+      p50: '/products/5c5774fb-4b49-4e71-ae4c-36cfa570ff2c/',
+      refund: '/pages/112422',
+      samples: '/pages/samples', /* تتغيّر لرابط صفحة العيّنات بعد إنشائها */
+      packs: '/categories/1537978/'
+    },
+    socials: [
+      { k: 'tiktok', t: 'تيك توك', u: 'https://www.tiktok.com/@ibralyousef' },
+      { k: 'instagram', t: 'انستقرام', u: 'https://www.instagram.com/ibralyousef' },
+      { k: 'x', t: 'إكس', u: 'https://x.com/ibralyousef' },
+      { k: 'youtube', t: 'يوتيوب', u: 'https://www.youtube.com/@ibralyousef' },
+      { k: 'snapchat', t: 'سناب شات', u: 'https://www.snapchat.com/add/ibralyousef' }
+    ],
+    samples: [
+      { t: 'الإعلاني', d: 'حيوي ومقنع، يبيع المنتج من أول جملة', f: '02-ad.mp3', g: 'biz' },
+      { t: 'الوثائقي', d: 'رسمي وموثوق للأفلام الوثائقية', f: '01-documentary.mp3', g: 'info' },
+      { t: 'الرد الآلي', d: 'واضح وسلس لأنظمة IVR', f: '03-ivr.mp3', g: 'biz' },
+      { t: 'الإخباري', d: 'جاد ومحايد بنبرة نشرة', f: '04-news.mp3', g: 'info' },
+      { t: 'التعليمي', d: 'بسيط يوصل المعلومة بسهولة', f: '05-education.mp3', g: 'info' },
+      { t: 'القصصي', d: 'مشوّق يشد المستمع للنهاية', f: '06-story.mp3', g: 'art' },
+      { t: 'الشعر', d: 'إلقاء يبرز الإيقاع والإحساس', f: '07-poetry.mp3', g: 'art' },
+      { t: 'الدرامي', d: 'تعبير عاطفي للمشاهد التمثيلية', f: '08-drama.mp3', g: 'art' },
+      { t: 'التوعوي', d: 'موجّه لقضايا صحية واجتماعية', f: '09-awareness.mp3', g: 'info' },
+      { t: 'الترفيهي', d: 'مرح وخفيف للبرامج والأطفال', f: '10-fun.mp3', g: 'art' },
+      { t: 'الرسمي', d: 'للمؤتمرات والخطابات الرسمية', f: '11-formal.mp3', g: 'biz' },
+      { t: 'الحماسي', d: 'طاقة عالية للرياضة والعروض', f: '12-hype.mp3', g: 'biz' }
+    ],
+    reels: [
+      { id: '7660245006539590933', t: 'ليه أحب التعليق الصوتي؟' },
+      { id: '7659124938997107989', t: 'فما عيني تساعدني فأبكي' },
+      { id: '7660565293743230229', t: 'الطيبين للطيبات' },
+      { id: '7611255918487014677', t: 'هادئين جدًا' },
+      { id: '7608673386834808084', t: 'انفض غبار الهم عن قلبك' },
+      { id: '7665351611467779348', t: 'طاقتك لها حد' }
+    ]
+  };
+
+  var I = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+    ear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 10.5v3M21 12h0"/></svg>',
+    edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>',
+    star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2A9.7 9.7 0 0 0 3.7 17l-1.4 4.8 5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2c0 1.2.8 2.3 1 2.5.1.2 1.7 2.6 4.1 3.6 1.5.7 2.1.7 2.9.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1 0-.2-.2-.2-.4-.3z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 2.5c.4 2.4 1.8 3.9 4.2 4.1v3.3a7.6 7.6 0 0 1-4.1-1.3v6.6a6.3 6.3 0 1 1-6.3-6.3h.6v3.4h-.6a2.9 2.9 0 1 0 2.9 2.9V2.5z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg>',
+    x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18.1 5.6 12 5.6 12 5.6s-6.1 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.8.5 7.9.5 7.9.5s6.1 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8zM10 15.2V8.8l5.3 3.2z"/></svg>',
+    snapchat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c3.2 0 5.4 2.4 5.4 5.6l-.1 2.4 1.6-.5c.7-.1 1.1.7.5 1.1l-1.9 1c.6 1.8 2 3.1 3.9 3.6.1.6-1.1 1-2.6 1.3l-.4 1.3-1.8-.2c-1.4 0-2.2 1.4-4.6 1.4s-3.2-1.4-4.6-1.4l-1.8.2-.4-1.3c-1.5-.3-2.7-.7-2.6-1.3 1.9-.5 3.3-1.8 3.9-3.6l-1.9-1c-.6-.4-.2-1.2.5-1.1l1.6.5-.1-2.4c0-3.2 2.2-5.6 5.4-5.6z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>',
+    up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16"/></svg>',
+    bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
+  };
+
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function h(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
+  function waLink(msg) { return 'https://wa.me/' + C.wa + '?text=' + encodeURIComponent(msg || 'السلام عليكم، أبي أستفسر عن التعليق الصوتي'); }
+  function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+  function money(n) { return Number(n).toLocaleString('en-US'); }
+  var SAR = '<span class="ib-sar">ر.س</span>';
+
+  /* ---------- مشغّل صوت واحد للمتجر كله ---------- */
+  var audio = new Audio();
+  audio.preload = 'none';
+  var current = null;
+  function setState(btn, playing) {
+    if (!btn) return;
+    btn.classList.toggle('is-playing', playing);
+    var card = btn.closest('[data-ib-card]');
+    if (card) card.classList.toggle('is-playing', playing);
+    var ic = btn.querySelector('.ib-ic');
+    if (ic) ic.innerHTML = playing ? I.pause : I.play;
+    btn.setAttribute('aria-label', playing ? 'إيقاف' : 'تشغيل');
+  }
+  function toggle(btn) {
+    var src = C.audioBase + btn.getAttribute('data-src');
+    if (current === btn && !audio.paused) { audio.pause(); return; }
+    if (current && current !== btn) { setState(current, false); resetBar(current); }
+    current = btn;
+    if (audio.getAttribute('src') !== src) audio.setAttribute('src', src);
+    audio.play().then(function () { setState(btn, true); }).catch(function () { setState(btn, false); });
+  }
+  function resetBar(btn) {
+    var card = btn && btn.closest('[data-ib-card]');
+    var bar = card && card.querySelector('.ib-bar i');
+    if (bar) bar.style.width = '0%';
+  }
+  audio.addEventListener('pause', function () { setState(current, false); });
+  audio.addEventListener('playing', function () { setState(current, true); });
+  audio.addEventListener('ended', function () { setState(current, false); resetBar(current); });
+  audio.addEventListener('timeupdate', function () {
+    if (!current || !audio.duration) return;
+    var card = current.closest('[data-ib-card]');
+    var bar = card && card.querySelector('.ib-bar i');
+    if (bar) bar.style.width = (audio.currentTime / audio.duration * 100).toFixed(1) + '%';
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ib-play]');
+    if (b) { e.preventDefault(); toggle(b); return; }
+    var m = e.target.closest('[data-ib-more]');
+    if (m) { var g = $('.ib-samples'); if (g) g.classList.add('is-all'); m.parentNode.remove(); }
+  });
+
+  function sampleCard(s, i) {
+    return '<article class="ib-sample" data-ib-card>' +
+      '<button class="ib-play" data-ib-play data-src="' + s.f + '" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span></button>' +
+      '<div class="ib-sample__txt"><h3>' + s.t + '</h3><p>' + s.d + '</p><div class="ib-bar"><i></i></div></div>' +
+      '<span class="ib-sample__n">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '</article>';
+  }
+
+  /* ---------- الصفحة الرئيسية ---------- */
+  function buildHome() {
+    var home = $('.app-content .home');
+    if (!home || $('.ib-home')) return;
+    document.documentElement.classList.add('ib-is-home');
+
+    var sections = $$(':scope > section, :scope > div', home);
+    var partners = null, reviews = null;
+    sections.forEach(function (s) {
+      var txt = (s.textContent || '');
+      if (!partners && /شركاء/.test(txt) && !/آراء/.test(txt)) partners = s;
+      else if (!reviews && /آراء العملاء/.test(txt)) reviews = s;
+      else s.classList.add('ib-hide');
+    });
+
+    var html =
+      '<div class="ib-home">' +
+
+      /* البطل */
+      heroHTML(heroVariant()) +
+
+      /* المزايا */
+      '<section class="ib-feats"><div class="ib-wrap ib-feats__grid">' +
+        feat(I.mic, 'جودة استوديو', 'تسجيل ومعالجة احترافية، وملفات WAV وMP3 جاهزة.') +
+        feat(I.ear, 'عيّنة قبل التنفيذ', 'تسمع الأداء وتعتمده قبل النسخة النهائية.') +
+        feat(I.clock, 'تسليم سريع', 'من 2 إلى 3 أيام عمل، أو خلال 24 ساعة.') +
+        feat(I.edit, 'نكتب نصّك', 'ما عندك نص؟ نكتبه لك من فكرتك بـ 100 ر.س.') +
+      '</div></section>' +
+
+      /* العيّنات */
+      '<section class="ib-sec ib-sec--cream" id="ib-samples"><div class="ib-wrap">' +
+        head('اسمع قبل تطلب', '12 لون أداء.', 'اختر الأقرب لمشروعك.', 'اضغط تشغيل وجرّب بنفسك — كل عيّنة 15 ثانية.') +
+        '<div class="ib-samples">' + C.samples.map(sampleCard).join('') + '</div>' +
+        '<div class="ib-center ib-more-wrap"><button type="button" class="ib-btn ib-btn--line" data-ib-more>اعرض كل العيّنات (12)</button></div>' +
+      '</div></section>' +
+
+      /* الأسعار */
+      '<section class="ib-sec" id="ib-plans"><div class="ib-wrap">' +
+        head('الأسعار', 'اختر اللي', 'يناسب مشروعك.', 'أسعار واضحة بدون مفاجآت، وتقدر تقسّط مع تمارا.') +
+        '<div class="ib-plans">' +
+          '<article class="ib-plan">' +
+            '<p class="ib-plan__tag">طلب فردي</p><h3>تعليق صوتي</h3>' +
+            '<p class="ib-plan__price"><small>يبدأ من</small> 190 ' + SAR + '</p>' +
+            '<ul class="ib-rows">' +
+              row('15 ثانية', '190') + row('30 ثانية', '350') + row('60 ثانية', '550') +
+            '</ul>' +
+            '<p class="ib-plan__note">+200 ر.س للتسليم خلال 24 ساعة</p>' +
+            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vo + '">اطلب الآن</a>' +
+          '</article>' +
+          '<article class="ib-plan ib-plan--feat">' +
+            '<p class="ib-plan__tag">للمحتوى المستمر</p><h3>الباقات</h3>' +
+            '<p class="ib-plan__price"><small>للمقطع من</small> 279 ' + SAR + '</p>' +
+            '<ul class="ib-rows ib-rows--links">' +
+              pack(C.links.p5, '5 مقاطع', 1490, 5) +
+              pack(C.links.p10, '10 مقاطع', 2790, 10, 'الأوفر') +
+            '</ul>' +
+            '<p class="ib-plan__note">كل مقطع حتى 30 ثانية · هوية صوتية ثابتة</p>' +
+          '</article>' +
+          '<article class="ib-plan">' +
+            '<p class="ib-plan__tag">للجهات والحملات الكبيرة</p><h3>VIP</h3>' +
+            '<p class="ib-plan__price"><small>يبدأ من</small> 1,500 ' + SAR + '</p>' +
+            '<ul class="ib-list">' +
+              li('أولوية قصوى في التنفيذ') + li('استشارة قبل التسجيل') + li('أكثر من تجربة أداء') + li('تواصل مباشر طوال المشروع') +
+            '</ul>' +
+            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vip + '">اطلب VIP</a>' +
+            '<a class="ib-link" href="' + waLink('السلام عليكم، عندي مشروع وأبي عرض سعر VIP') + '" target="_blank" rel="noopener">أو اطلب عرض سعر على الواتساب</a>' +
+          '</article>' +
+        '</div>' +
+      '</div></section>' +
+
+      '<div class="ib-slot" data-slot="partners"></div>' +
+
+      /* آلية العمل */
+      '<section class="ib-sec ib-sec--cream"><div class="ib-wrap">' +
+        head('آلية العمل', 'من الفكرة', 'إلى الملف النهائي.', '') +
+        '<ol class="ib-steps">' +
+          step('ترسل النص أو الفكرة', 'ما عندك نص؟ نكتبه لك بـ 100 ر.س.') +
+          step('ننسّق على الواتساب', 'نتفق على النبرة والأسلوب والمدة.') +
+          step('عيّنة للاعتماد', 'تسمع الأداء قبل التنفيذ الكامل.') +
+          step('التسليم', 'ملفات WAV وMP3 جاهزة للاستخدام.') +
+        '</ol>' +
+      '</div></section>' +
+
+      reelsHTML() +
+
+      '<div class="ib-slot" data-slot="reviews"></div>' +
+
+      /* الأسئلة */
+      '<section class="ib-sec ib-sec--cream"><div class="ib-wrap ib-faq-wrap">' +
+        head('أسئلة شائعة', 'قبل', 'لا تطلب.', '') +
+        '<div class="ib-faq">' +
+          faq('كم ياخذ وقت التنفيذ؟', 'من 2 إلى 3 أيام عمل حسب طبيعة المشروع، وتقدر تختار التسليم خلال 24 ساعة مقابل 200 ر.س إضافية.') +
+          faq('ما عندي نص جاهز، وش أسوي؟', 'اختر «اكتب لي النص» مع طلبك بـ 100 ر.س، وفي الباقات بسعر أقل للنص. نكتبه من فكرتك ونعتمده معك قبل التسجيل.') +
+          faq('أقدر أعدّل على التسجيل؟', 'نرسل لك عيّنة تعتمدها قبل النسخة النهائية، وأي خطأ من جهتنا نعدّله بدون رسوم. تغيير النص أو النبرة بعد بدء العمل يُحتسب بـ 50% من قيمة الخدمة.') +
+          faq('بأي صيغة أستلم الملفات؟', 'MP3 أو WAV بجودة استوديو، جاهزة للإعلان أو الفيديو أو البودكاست.') +
+          faq('وش طرق الدفع؟', 'أبل باي، مدى، فيزا، تحويل بنكي، أو قسّطها مع تمارا على 4 دفعات.') +
+          faq('وش سياسة الاسترجاع؟', 'قبل بدء التنفيذ يسترجع 50%، وبعد البدء ما فيه استرجاع. <a href="' + C.links.refund + '">التفاصيل</a>') +
+        '</div>' +
+      '</div></section>' +
+
+      finalHTML() +
+
+      '</div>';
+
+    var root = h(html);
+    home.insertBefore(root, home.firstChild);
+    if (partners) { partners.classList.add('ib-partners'); $('[data-slot="partners"]', root).replaceWith(partners); }
+    if (reviews) { reviews.classList.add('ib-reviews'); $('[data-slot="reviews"]', root).replaceWith(reviews); }
+    $$('.ib-slot', root).forEach(function (s) { s.remove(); });
+    lazyReels();
+    initOdometers();
+  }
+
+  /* ---------- أجزاء مشتركة ---------- */
+  function socialRow(cls) {
+    return '<div class="ib-social ' + (cls || '') + '">' + C.socials.map(function (x) {
+      return '<a href="' + x.u + '" target="_blank" rel="noopener" aria-label="' + x.t + '" title="' + x.t + '">' + I[x.k] + '</a>';
+    }).join('') + '</div>';
+  }
+  function reelsHTML() {
+    return '<section class="ib-sec ib-sec--ink" id="ib-reels"><div class="ib-wrap">' +
+      head('من حساباتي', 'صوتي ووجهي،', 'بدون فلتر.', '', true) +
+      '<div class="ib-reels">' + C.reels.map(function (r) {
+        return '<figure class="ib-reel" data-id="' + r.id + '"><div class="ib-reel__frame"></div><figcaption>' + r.t + '</figcaption></figure>';
+      }).join('') + '</div>' +
+      '<div class="ib-follow"><p class="ib-handle" dir="ltr">@' + C.handle + '</p>' + socialRow('ib-social--center') + '</div>' +
+    '</div></section>';
+  }
+  function finalHTML() {
+    return '<section class="ib-final"><div class="ib-wrap ib-final__in">' +
+      '<h2>فكرتك صوتها مسموع.</h2>' +
+      '<p>اختر المدة، أرسل النص، والباقي علينا.</p>' +
+      '<div class="ib-actions ib-actions--center">' +
+        '<a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب الآن ' + I.arrow + '</a>' +
+        '<a class="ib-btn ib-btn--wa" href="' + waLink() + '" target="_blank" rel="noopener">' + I.wa + ' كلّمني واتساب</a>' +
+      '</div>' +
+    '</div></section>';
+  }
+
+  /* ---------- صفحة العيّنات ---------- */
+  var GROUPS = [['all', 'الكل'], ['biz', 'تجاري'], ['info', 'معلوماتي'], ['art', 'فنّي']];
+  function isSamplesPage() {
+    if (/[?&]ib=samples/.test(location.search)) return true;
+    var path = decodeURIComponent(location.pathname).replace(/\/+$/, '');
+    if (path === C.links.samples.replace(/\/+$/, '') || /\/pages\/(samples|العينات-الصوتية)$/.test(path)) return true;
+    var t = $('.app-content .blog-title h1');
+    return !!(t && /العي[ّ]?نات الصوتية/.test(t.textContent));
+  }
+  function buildSamples() {
+    var app = $('.app-content');
+    if (!app || $('.ib-spage') || !isSamplesPage()) return;
+    document.documentElement.classList.add('ib-is-samples');
+    $$(':scope > *', app).forEach(function (el) { el.classList.add('ib-hide'); });
+    document.title = 'العيّنات الصوتية | إبراهيم اليوسف';
+
+    var html = '<div class="ib-home ib-spage">' +
+      '<section class="ib-hero ib-hero--a ib-hero--s"><div class="ib-wrap ib-hero__in">' +
+        '<p class="ib-kicker ib-kicker--light">العيّنات الصوتية</p>' +
+        '<h1>اسمع قبل تطلب،<br><em>واختر صوت فكرتك.</em></h1>' +
+        '<p class="ib-lead">12 لون أداء، كل عيّنة 15 ثانية. اضغط تشغيل وجرّب بنفسك.</p>' +
+        '<div class="ib-actions ib-actions--center">' +
+          '<button type="button" class="ib-pill-play" data-ib-all aria-label="شغّل الكل"><span class="ib-ic">' + I.play + '</span><span class="ib-pill-play__t">شغّل كل العيّنات</span><span class="ib-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>' +
+        '</div>' +
+      '</div></section>' +
+
+      '<section class="ib-sec ib-sec--cream ib-sec--tight"><div class="ib-wrap">' +
+        '<div class="ib-filter" role="tablist">' + GROUPS.map(function (g, i) {
+          return '<button type="button" role="tab" class="ib-chip-f' + (i ? '' : ' is-on') + '" data-ib-filter="' + g[0] + '">' + g[1] + '</button>';
+        }).join('') + '</div>' +
+        '<div class="ib-samples is-all ib-samples--page">' + C.samples.map(function (s, i) {
+          return sampleCard(s, i).replace('<article class="ib-sample" data-ib-card>', '<article class="ib-sample" data-ib-card data-g="' + s.g + '">')
+            .replace('<div class="ib-bar"><i></i></div></div>', '<div class="ib-bar"><i></i></div><a class="ib-sample__go" href="' + C.links.vo + '">اطلب بهالأسلوب ' + I.arrow + '</a></div>');
+        }).join('') + '</div>' +
+        '<p class="ib-note-c">ما لقيت الأسلوب اللي في بالك؟ <a href="' + waLink('السلام عليكم، أبي أسلوب أداء معيّن لمشروعي') + '" target="_blank" rel="noopener">كلّمني على الواتساب</a> ونتفق على الأسلوب.</p>' +
+      '</div></section>' +
+
+      '<section class="ib-sec"><div class="ib-wrap">' +
+        head('الخطوة الجاية', 'عجبك الصوت؟', 'اختر طريقتك.', '') +
+        '<div class="ib-next">' +
+          nextCard(C.links.vo, 'مقطع واحد', 'يبدأ من 190 ر.س', 'لإعلان أو فيديو أو رد آلي.') +
+          nextCard(C.links.packs, 'الباقات', 'المقطع من 279 ر.س', 'لمحتوى مستمر بهوية صوتية ثابتة.', true) +
+          nextCard(C.links.vip, 'طلب خاص VIP', 'يبدأ من 1,500 ر.س', 'للجهات والحملات الكبيرة.') +
+        '</div>' +
+      '</div></section>' +
+
+      reelsHTML() + finalHTML() +
+    '</div>';
+    app.insertBefore(h(html), app.firstChild);
+    lazyReels();
+  }
+  function nextCard(href, t, p, d, feat) {
+    return '<a class="ib-next__c' + (feat ? ' is-feat' : '') + '" href="' + href + '"><h3>' + t + '</h3><b>' + p + '</b><p>' + d + '</p><span class="ib-next__go">' + I.arrow + '</span></a>';
+  }
+  /* فلترة + تشغيل متتابع */
+  var queue = null;
+  document.addEventListener('click', function (e) {
+    var f = e.target.closest('[data-ib-filter]');
+    if (f) {
+      var g = f.getAttribute('data-ib-filter');
+      $$('[data-ib-filter]').forEach(function (b) { b.classList.toggle('is-on', b === f); });
+      $$('.ib-samples--page .ib-sample').forEach(function (c) { c.classList.toggle('ib-off', g !== 'all' && c.getAttribute('data-g') !== g); });
+      return;
+    }
+    var a = e.target.closest('[data-ib-all]');
+    if (a) {
+      e.preventDefault();
+      if (queue) { queue = null; audio.pause(); a.classList.remove('is-playing'); $('.ib-ic', a).innerHTML = I.play; return; }
+      queue = $$('.ib-samples--page .ib-sample:not(.ib-off) [data-ib-play]');
+      a.classList.add('is-playing'); $('.ib-ic', a).innerHTML = I.pause;
+      if (queue.length) toggle(queue.shift());
+    }
+  });
+  audio.addEventListener('ended', function () {
+    if (!queue) return;
+    var b = $('[data-ib-all]');
+    if (queue.length) { var nx = queue.shift(); nx.scrollIntoView({ behavior: 'smooth', block: 'center' }); toggle(nx); }
+    else { queue = null; if (b) { b.classList.remove('is-playing'); $('.ib-ic', b).innerHTML = I.play; } }
+  });
+  audio.addEventListener('pause', function () {
+    if (queue && audio.currentTime < audio.duration - 0.2) { queue = null; var b = $('[data-ib-all]'); if (b) { b.classList.remove('is-playing'); $('.ib-ic', b).innerHTML = I.play; } }
+  });
+
+  /* ---------- الصفحات الداخلية: بنر موحّد + محتوى مقروء ---------- */
+  var POLICIES = [
+    ['/pages/112429', 'من نحن؟'], ['/pages/112421', 'الشروط والأحكام'], ['/pages/112422', 'سياسة الاستبدال والاسترجاع'],
+    ['/pages/112420', 'سياسة الخصوصية'], ['/pages/112424', 'التراخيص']
+  ];
+  function pageHero(k, t, sub) {
+    return '<section class="ib-hero ib-phero"><div class="ib-wrap ib-hero__in">' +
+      '<p class="ib-kicker">' + k + '</p><h1>' + t + '</h1>' + (sub ? '<p class="ib-lead">' + sub + '</p>' : '') +
+    '</div></section>';
+  }
+  function ctaStrip() {
+    return '<div class="ib-strip"><div><h3>جاهز تسمع صوت فكرتك؟</h3><p>اسمع العيّنات، واطلب بخطوتين.</p></div>' +
+      '<div class="ib-actions"><a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب تعليقك الصوتي ' + I.arrow + '</a>' +
+      '<a class="ib-btn ib-btn--line" href="' + C.links.samples + '">اسمع العيّنات</a></div></div>';
+  }
+  function buildInner() {
+    var app = $('.app-content');
+    if (!app || $('.ib-phero') || $('.ib-spage') || $('.ib-home')) return;
+    var root = document.documentElement;
+
+    /* صفحات المتجر الثابتة */
+    var blog = $(':scope > section.blog', app);
+    if (blog) {
+      root.classList.add('ib-is-page');
+      var h1 = $('.blog-title h1', blog), title = h1 ? h1.textContent.trim() : '';
+      var isAbout = /من نحن/.test(title);
+      var cur = POLICIES.filter(function (x) { return x[1] === title; })[0];
+      app.insertBefore(h(pageHero(isAbout ? 'تعرّف عليّ' : 'سياسات المتجر', title,
+        isAbout ? 'معلّق صوتي · أكثر من 1,000 مشروع صوتي' : 'بوضوح، قبل لا تطلب.')), app.firstChild);
+      var body = $('.blog-text', blog);
+      if (body) {
+        body.classList.add('ib-prose');
+        var nav = '<nav class="ib-pnav" aria-label="صفحات المتجر">' + POLICIES.map(function (x) {
+          return '<a href="' + x[0] + '"' + (cur && cur[0] === x[0] ? ' class="is-on" aria-current="page"' : '') + '>' + x[1] + '</a>';
+        }).join('') + '</nav>';
+        body.insertAdjacentHTML('afterend', nav + ctaStrip());
+      }
+      return;
+    }
+
+    /* صفحة التصنيف (الباقات) */
+    var sub = $('.subTitle-detail', app);
+    if (sub) {
+      root.classList.add('ib-is-cat');
+      var t = (($('.bread-title', sub) || {}).textContent || '').replace(/ /g, ' ').trim();
+      var isPacks = /باقات/.test(t);
+      sub.insertAdjacentHTML('beforebegin', pageHero(isPacks ? 'الباقات' : 'المتجر', t,
+        isPacks ? 'لمحتوى مستمر بهوية صوتية ثابتة. 5 أو 10 مقاطع، المقطع يبدأ من 279 ر.س، وكل مقطع حتى 30 ثانية.' : ''));
+      var list = $('.products-list', app);
+      if (list && isPacks) list.insertAdjacentHTML('afterend', '<p class="ib-note-c">تحتاج أكثر من 50 مقطع أو مشروع خاص؟ <a href="' + C.links.vip + '">اطلب VIP</a> أو <a href="' + waLink('السلام عليكم، أبي باقة مخصّصة') + '" target="_blank" rel="noopener">كلّمني واتساب</a>.</p>');
+      return;
+    }
+
+    /* السلة */
+    if ($('.cart-view', app)) {
+      root.classList.add('ib-is-cart');
+      app.insertBefore(h(pageHero('السلة', 'سلّتك', '')), app.firstChild);
+      return;
+    }
+
+    /* خيارات الدفع والتسليم */
+    if ($('.tab-content-shipping', app)) {
+      root.classList.add('ib-is-ship');
+      app.insertBefore(h(pageHero('قبل الطلب', 'الدفع والتسليم', 'أبل باي، مدى، فيزا، تحويل بنكي، أو قسّطها مع تمارا. والتسليم ملفات رقمية على الواتساب أو الإيميل.')), app.firstChild);
+      /* خدمة رقمية: لا شحن — نفتح تبويب الدفع مباشرة */
+      var pay = $('a.profile-row[onclick*="v-pills-profile"]');
+      $$('a.profile-row[onclick*="v-pills-home"], .li-pills-home').forEach(function (a) { a.classList.add('ib-hide'); });
+      if (pay && typeof window.setTab === 'function') window.setTab('#v-pills-profile', pay);
+      else if (pay) pay.click();
+    }
+  }
+
+  /* وصف المنتج: رابط العيّنات داخل الوصف */
+  function fixDescription() {
+    var d = $('#product-description .description-paragrah');
+    if (!d || d.dataset.ib) return;
+    d.dataset.ib = '1';
+    $$('h2', d).forEach(function (h2) {
+      if (/اسمع العي/.test(h2.textContent)) {
+        var p = h2.nextElementSibling;
+        if (p && p.tagName === 'P') { p.textContent = 'اسمع 12 لون أداء حقيقي، واختر الأقرب لمشروعك. '; p.insertAdjacentHTML('beforeend', '<a href="' + C.links.samples + '">اسمع العيّنات ←</a>'); }
+      }
+    });
+  }
+
+  /* ---------- الفوتر والقائمة ---------- */
+  function fixNav() {
+    $$('a[href*="canva.site/ibravoice"]').forEach(function (a) { a.setAttribute('href', C.links.samples); a.removeAttribute('target'); });
+    $$('.footer a').forEach(function (a) {
+      var t = a.textContent.trim();
+      if (t === 'العينات الصوتي' || t === 'العينات الصوتية') { a.textContent = 'العيّنات الصوتية'; a.setAttribute('href', C.links.samples); }
+      if (t === 'طلب خاص VIP') a.setAttribute('href', C.links.vip);
+      if (t === 'باقات التعليق الصوتي') a.textContent = 'الباقات';
+      if (t === 'الشكاوى والاقتراحات') { var p = a.closest('p'); if (p) p.classList.add('ib-hide'); }
+    });
+    /* العيّنات أول رابط بعمود الخدمات + عناوين الأعمدة */
+    var cols = $$('.footer .col-lg-7 .footer-about-us-links-div');
+    var heads = ['الخدمات', 'عن المتجر'];
+    cols.forEach(function (c, i) {
+      var h2 = $('h2', c);
+      if (h2 && !h2.textContent.trim() && heads[i]) h2.textContent = heads[i];
+      if (i === 0) {
+        var sp = $$('a', c).filter(function (a) { return a.textContent.trim() === 'العيّنات الصوتية'; })[0];
+        if (sp && sp.parentNode !== c.children[1]) c.insertBefore(sp.parentNode, $('p', c));
+      }
+      /* صفحة العيّنات لا تتكرر بعمود الصفحات */
+      if (i === 1) $$('a', c).forEach(function (a) { if (/العي[ّ]?نات/.test(a.textContent)) a.parentNode.classList.add('ib-hide'); });
+    });
+    /* تواصل معنا: واتساب بدل الاتصال، والحسابات الجديدة */
+    var soc = $('.footer .social-icons');
+    if (soc && !soc.dataset.ib) {
+      soc.dataset.ib = '1';
+      var mail = $('a[href^="mailto:"], a[href*="email-protection"]', soc);
+      soc.innerHTML = '';
+      soc.classList.add('ib-social', 'ib-social--foot');
+      soc.insertAdjacentHTML('beforeend', '<a href="' + waLink() + '" target="_blank" rel="noopener" aria-label="واتساب" title="واتساب">' + I.wa + '</a>');
+      C.socials.forEach(function (x) { soc.insertAdjacentHTML('beforeend', '<a href="' + x.u + '" target="_blank" rel="noopener" aria-label="' + x.t + '" title="' + x.t + '">' + I[x.k] + '</a>'); });
+      if (mail) { mail.innerHTML = I.mail; mail.setAttribute('aria-label', 'الإيميل'); mail.removeAttribute('target'); soc.appendChild(mail); }
+    }
+  }
+
+  /* ---------- البطل: 3 خيارات ---------- */
+  function heroVariant() {
+    var m = /[?&]hero=([abc])/.exec(location.search);
+    return (m && m[1]) || window.IBRA_HERO || C.hero || 'a';
+  }
+
+  /* عدّاد يلف أرقامه مثل العدّاد الميكانيكي */
+  function odo(n, cls) {
+    var s = money(n), out = '';
+    for (var i = 0; i < s.length; i++) {
+      var ch = s[i];
+      if (ch < '0' || ch > '9') { out += '<span class="ib-odo__sep">' + ch + '</span>'; continue; }
+      var col = '';
+      for (var r = 0; r < 2; r++) for (var d = 0; d <= 9; d++) col += '<span>' + d + '</span>';
+      col += '<span>' + ch + '</span>';
+      out += '<span class="ib-odo__d"><span class="ib-odo__col" style="--to:' + (20) + ';--i:' + i + '">' + col + '</span></span>';
+    }
+    return '<span class="ib-odo ' + (cls || '') + '" aria-label="' + s + '+" role="img"><span class="ib-odo__plus">+</span>' + out + '</span>';
+  }
+  function initOdometers() {
+    var els = $$('.ib-odo');
+    var go = function (el) { el.classList.add('is-on'); };
+    if (!('IntersectionObserver' in window)) { els.forEach(go); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { setTimeout(function () { go(e.target); }, 250); io.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    els.forEach(function (e) { io.observe(e); });
+    document.addEventListener('mouseover', function (e) {
+      var o = e.target.closest && e.target.closest('.ib-odo.is-on');
+      if (!o || o.dataset.spin) return;
+      o.dataset.spin = '1';
+      o.classList.add('no-t'); o.classList.remove('is-on'); void o.offsetWidth;
+      o.classList.remove('no-t'); o.classList.add('is-on');
+      setTimeout(function () { delete o.dataset.spin; }, 2200);
+    });
+  }
+
+  function playPill(label) {
+    return '<button class="ib-pill-play" data-ib-play data-src="02-ad.mp3" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span>' +
+      '<span class="ib-pill-play__t">' + label + '</span><span class="ib-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>';
+  }
+
+  function heroHTML(v) {
+    var order = '<a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب تعليقك الصوتي ' + I.arrow + '</a>';
+    var bars = '';
+    for (var w = 0; w < 64; w++) bars += '<i style="--s:' + (0.15 + Math.abs(Math.sin(w * 0.55) * Math.cos(w * 0.13)) * 0.85).toFixed(2) + ';--d:' + (w % 9) * 0.09 + 's"></i>';
+    var bg = '<div class="ib-hero__wave" aria-hidden="true">' + bars + '</div>';
+
+    if (v === 'b') {
+      /* B: الصوت أولاً — زر تشغيل كبير بحلقات */
+      return '<section class="ib-hero ib-hero--b" data-ib-card><div class="ib-wrap ib-hero__in">' +
+        '<div class="ib-hero__txt">' +
+          '<div class="ib-stats">' +
+            '<div class="ib-stat">' + odo(1000) + '<span>مشروع صوتي</span></div>' +
+            '<div class="ib-stat"><b>12</b><span>لون أداء</span></div>' +
+            '<div class="ib-stat"><b>24<small>س</small></b><span>أسرع تسليم</span></div>' +
+          '</div>' +
+          '<h1><span class="ib-sw">صوت</span> يوصّل فكرتك<br><em>من أول كلمة.</em></h1>' +
+          '<div class="ib-actions">' + order + '</div>' +
+        '</div>' +
+        '<div class="ib-disc">' +
+          '<span class="ib-ring"></span><span class="ib-ring"></span><span class="ib-ring"></span>' +
+          '<button class="ib-play ib-play--disc" data-ib-play data-src="02-ad.mp3" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span></button>' +
+          '<p class="ib-disc__t">اضغط واسمع صوتي</p>' +
+        '</div>' +
+      '</div></section>';
+    }
+
+    if (v === 'c') {
+      /* C: الرقم هو البطل */
+      return '<section class="ib-hero ib-hero--c" data-ib-card>' + bg + '<div class="ib-wrap ib-hero__in">' +
+        '<p class="ib-hero__pre">أكثر من</p>' +
+        odo(1000, 'ib-odo--xl') +
+        '<p class="ib-hero__label">مشروع وصله صوتي</p>' +
+        '<p class="ib-hero__who">من <b>وزارة الثقافة</b> و<b>سدايا</b>… وفكرتك الجاية؟</p>' +
+        '<div class="ib-actions ib-actions--center">' + order + playPill('اسمع صوتي') + '</div>' +
+      '</div></section>';
+    }
+
+    /* A: هادي ومركّز */
+    return '<section class="ib-hero ib-hero--a" data-ib-card>' + bg + '<div class="ib-wrap ib-hero__in">' +
+      '<div class="ib-badge-live"><span class="ib-dot"></span>' + odo(1000) + '<span>مشروع صوتي سلّمته</span></div>' +
+      '<h1><span class="ib-sw">صوت</span> يوصّل فكرتك<br><em>من أول كلمة.</em></h1>' +
+      '<p class="ib-lead">إعلانات، وثائقيات، رد آلي، وهوية صوتية — بجودة استوديو.</p>' +
+      '<div class="ib-actions ib-actions--center">' + order + playPill('اسمع صوتي') + '</div>' +
+    '</div></section>';
+  }
+
+  function feat(ic, t, d) { return '<div class="ib-feat"><span class="ib-chip">' + ic + '</span><div><h3>' + t + '</h3><p>' + d + '</p></div></div>'; }
+  function head(k, a, b, p, light) {
+    return '<header class="ib-head' + (light ? ' ib-head--light' : '') + '"><p class="ib-kicker">' + k + '</p><h2>' + a + ' <em>' + b + '</em></h2>' + (p ? '<p class="ib-sub">' + p + '</p>' : '') + '</header>';
+  }
+  function row(a, p) { return '<li><span>' + a + '</span><b>' + p + ' ' + SAR + '</b></li>'; }
+  function pack(href, a, total, n, badge) {
+    var per = Math.round(total / n);
+    return '<li><a href="' + href + '"><span>' + a + (badge ? ' <i class="ib-badge">' + badge + '</i>' : '') + '</span>' +
+      '<b>' + money(total) + ' ' + SAR + '<small>' + per + ' للمقطع</small></b></a></li>';
+  }
+  function li(t) { return '<li>' + I.check + '<span>' + t + '</span></li>'; }
+  function step(t, d) { return '<li><h3>' + t + '</h3><p>' + d + '</p></li>'; }
+  function faq(q, a) { return '<details class="ib-q"><summary>' + q + '<span class="ib-plus" aria-hidden="true"></span></summary><div>' + a + '</div></details>'; }
+
+  function lazyReels() {
+    var figs = $$('.ib-reel');
+    var load = function (f) {
+      if (f.dataset.loaded) return;
+      f.dataset.loaded = '1';
+      var src = 'https://www.tiktok.com/player/v1/' + f.dataset.id +
+        '?controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
+      $('.ib-reel__frame', f).innerHTML = '<iframe src="' + src + '" loading="lazy" allow="encrypted-media; fullscreen; autoplay" allowfullscreen title="' + ($('figcaption', f).textContent) + '"></iframe>';
+    };
+    if (!('IntersectionObserver' in window)) { figs.forEach(load); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '300px' });
+    figs.forEach(function (f) { io.observe(f); });
+  }
+
+  /* ---------- صفحة المنتج ---------- */
+  function buildProduct() {
+    var info = $('.col-product-info');
+    if (!info || info.dataset.ib) return;
+    info.dataset.ib = '1';
+    document.documentElement.classList.add('ib-is-product');
+    var path = decodeURIComponent(location.pathname);
+    var isVO = /\/products\/(VO|3b457ceb)/i.test(path);
+    var isVIP = /\/products\/(VIP|105da1b6)/i.test(path);
+    var pidEl = $('.send-notify-product-id');
+    if (pidEl && /^(5071dee8|9ba65d77)/.test(pidEl.value || pidEl.getAttribute('value') || '')) document.documentElement.classList.add('ib-nobadge');
+
+    var priceEl = $('.product-formatted-price', info);
+    if (priceEl && /^\s*0[.,]00/.test(priceEl.textContent)) {
+      priceEl.classList.add('ib-price');
+      priceEl.innerHTML = '<small>يبدأ من</small> ' + (isVIP ? '1,500 ' : '190 ') + SAR;
+      $$('tamara-widget, .tamara-product-widget').forEach(function (t) { t.classList.add('ib-hide'); });
+    }
+
+    var packs = { '5071dee8': [1490, 5], 'b894de85': [2790, 10], 'vopack10': [2790, 10], 'vopack': [1490, 5] };
+    Object.keys(packs).forEach(function (k) {
+      if (path.indexOf(k) > -1 && priceEl && !$('.ib-per', info)) {
+        var p = packs[k];
+        priceEl.insertAdjacentHTML('afterend', '<p class="ib-per">يعني <b>' + Math.round(p[0] / p[1]) + ' ر.س</b> للمقطع · كل مقطع حتى 30 ثانية</p>');
+      }
+    });
+
+    /* العيّنات تحت الوصف القصير ورابط «مزيد من المعلومات» */
+    var anchor = $('#product-description-a', info) || $('.text-short-description', info);
+    if (anchor && !$('.ib-mini', info)) {
+      var picks = [C.samples[0], C.samples[1], C.samples[2]];
+      anchor.insertAdjacentHTML('afterend',
+        '<div class="ib-mini"><p class="ib-mini__t">' + I.ear + ' اسمع قبل تطلب</p><div class="ib-mini__row">' +
+        picks.map(function (s) {
+          return '<div class="ib-mini__s" data-ib-card><button class="ib-play" data-ib-play data-src="' + s.f + '" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span></button><span>' + s.t + '</span><div class="ib-bar"><i></i></div></div>';
+        }).join('') +
+        '</div><a class="ib-link" href="' + C.links.samples + '">كل العيّنات (12)</a></div>');
+    }
+  }
+
+  /* ---------- نموذج الطلب: مدة ككروت، ملفات، خيارات كبطاقات، كتابة المحتوى ---------- */
+  var WRITE_RX = /اكتبه لي|اكتب لي النص|كتابة المحتوى/;
+  function enhanceOrderForm() {
+    var info = $('.col-product-info');
+    if (!info || info.dataset.ibForm) return;
+    info.dataset.ibForm = '1';
+
+    /* المدة: كروت بدل القائمة المنسدلة */
+    $$('select[data-type="DROPDOWN"]', info).forEach(function (sel) {
+      var opts = $$('option', sel).filter(function (o) { return o.value; });
+      if (!opts.length || opts.length > 6) return;
+      var box = h('<div class="ib-durs" role="radiogroup"></div>');
+      opts.forEach(function (o) {
+        var txt = o.textContent.replace(/\s+/g, ' ').trim();
+        var m = /(\d[\d,]*)[.,]\d{2}/.exec(txt) || /\+\s*(\d[\d,]*)/.exec(txt);
+        var price = m ? parseInt(m[1].replace(/,/g, ''), 10) : '';
+        var name = txt.split('(')[0].trim();
+        var b = h('<button type="button" class="ib-dur" role="radio" aria-checked="false"><b>' + name + '</b>' + (price ? '<span>' + price + ' ' + SAR + '</span>' : '') + '</button>');
+        b.addEventListener('click', function () {
+          sel.value = o.value;
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+          $$('.ib-dur', box).forEach(function (x) { x.classList.toggle('is-on', x === b); x.setAttribute('aria-checked', x === b ? 'true' : 'false'); });
+        });
+        box.appendChild(b);
+      });
+      sel.classList.add('ib-sr');
+      sel.parentNode.insertBefore(box, sel.nextSibling);
+    });
+
+    /* رفع الملفات */
+    $$('.file-label', info).forEach(function (l) {
+      l.classList.add('ib-drop');
+      var btn = $('button', l);
+      if (btn) btn.innerHTML = I.up + ' اختر ملف';
+    });
+
+    /* الخيارات (تسليم سريع / كتابة المحتوى) كبطاقات */
+    $$('.custom-checkbox-input', info).forEach(function (cb) {
+      var lab = cb.closest('label');
+      if (!lab) return;
+      lab.classList.add('ib-opt');
+      var t = lab.textContent;
+      /* خيار بدون رسوم: «مشمولة» بدل (+ 0.00 ر.س) */
+      $$('.custom-checkbox-label > span', lab).forEach(function (sp) {
+        var tx = sp.textContent.replace(/\s+/g, ' ');
+        if (/\(\s*\+\s*0[.,]00/.test(tx)) sp.innerHTML = '<em class="ib-free">مشمولة</em>';
+        else { var pm = /\(\s*\+\s*([\d,]+)(?:[.,]\d+)?/.exec(tx); if (pm) sp.innerHTML = '<em class="ib-ptag">+' + pm[1] + ' ' + SAR + '</em>'; }
+      });
+      var ic = /24 ساعة|سريع/.test(t) ? I.bolt : WRITE_RX.test(t) ? I.edit : I.check;
+      lab.insertAdjacentHTML('afterbegin', '<span class="ib-opt__ic">' + ic + '</span>');
+      var sync = function () {
+        lab.classList.toggle('is-on', cb.checked);
+        if (WRITE_RX.test(t)) writeNote(cb.checked, lab);
+      };
+      cb.addEventListener('change', sync); cb.addEventListener('input', sync);
+    });
+  }
+  function writeNote(on, lab) {
+    var note = $('.ib-wnote');
+    var ta = $('.col-product-info textarea');
+    if (on && !note) {
+      lab.closest('.form-group').insertAdjacentHTML('afterend',
+        '<div class="ib-wnote" role="status"><span class="ib-wnote__ic">' + I.wa + '</span><div><b>تمام، نكتب لك النص.</b>' +
+        '<p>بنتواصل معك على الواتساب، ونكتب النص سوا ونعتمده قبل التسجيل. اكتب فكرتك باختصار في خانة النص.</p></div></div>');
+      if (ta) { ta.dataset.ph = ta.getAttribute('placeholder') || ''; ta.setAttribute('placeholder', 'اكتب فكرتك باختصار: وش المنتج؟ مين الجمهور؟ وش تبي يوصل؟'); }
+    } else if (!on && note) {
+      note.remove();
+      if (ta && ta.dataset.ph !== undefined) ta.setAttribute('placeholder', ta.dataset.ph);
+    }
+  }
+
+  /* ---------- بطاقات بصرية بدل صور المنتجات ---------- */
+  var PV = {
+    '3b457ceb': { tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
+    '105da1b6': { tag: 'للجهات والحملات', big: 'VIP', unit: '', sub: 'السعر حسب المشروع', chips: ['أولوية قصوى', 'استشارة قبل التسجيل', 'أكثر من تجربة أداء'], s: '01-documentary.mp3', t: 'طلب خاص', vip: true },
+    '5071dee8': { tag: 'باقة', big: '5', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'بداية ذكية' },
+    'b894de85': { tag: 'باقة', big: '10', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'الأكثر طلبًا' },
+    '9ba65d77': { tag: 'باقة', big: '20', unit: 'مقطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'للحملات' },
+    '5c5774fb': { tag: 'باقة', big: '50', unit: 'مقطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'الأوفر' }
+  };
+  function pvFor(id) { return id ? PV[String(id).slice(0, 8)] : null; }
+  function waveBars(n, seed) {
+    var b = '';
+    for (var w = 0; w < n; w++) b += '<i style="--s:' + (0.18 + Math.abs(Math.sin((w + seed) * 0.62) * Math.cos((w + seed) * 0.17)) * 0.82).toFixed(2) + ';--d:' + (w % 7) * 0.11 + 's"></i>';
+    return b;
+  }
+  function productVisual() {
+    var idEl = $('.send-notify-product-id');
+    var v = pvFor(idEl && (idEl.value || idEl.getAttribute('value')));
+    var wrap = $('.col-product-image-wrapper');
+    if (!v || !wrap || $('.ib-pvis')) return;
+    wrap.classList.add('ib-hide');
+    $$('.lg-thumbs, .product-images-carousel-thumbs').forEach(function (t) { t.classList.add('ib-hide'); });
+    wrap.parentNode.insertBefore(h(
+      '<div class="ib-pvis' + (v.vip ? ' ib-pvis--vip' : '') + '" data-ib-card>' +
+        '<div class="ib-pvis__top"><span class="ib-pvis__tag">' + v.tag + '</span></div>' +
+        '<div class="ib-pvis__mid">' +
+          '<p class="ib-pvis__t">' + v.t + '</p>' +
+          '<p class="ib-pvis__big"><b>' + v.big + '</b>' + (v.unit ? '<span>' + v.unit + '</span>' : '') + '</p>' +
+          '<p class="ib-pvis__sub">' + v.sub + '</p>' +
+        '</div>' +
+        '<div class="ib-pvis__wave" aria-hidden="true">' + waveBars(40, v.big.length * 3) + '</div>' +
+        '<div class="ib-pvis__bot">' +
+          '<button class="ib-pill-play" data-ib-play data-src="' + v.s + '" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span><span class="ib-pill-play__t">اسمع صوتي</span><span class="ib-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>' +
+
+        '</div>' +
+      '</div>'), wrap);
+  }
+  /* كروت الباقات و«قد يعجبك أيضًا»: بطاقة مرسومة بدل الصورة */
+  function cardTiles() {
+    $$('.product-item').forEach(function (item) {
+      if (item.dataset.ibTile) return;
+      var img = item.querySelector('img[id^="product-card-img-"]');
+      var badge = item.querySelector('[data-badge-name-product-id]');
+      var id = (img && img.id.replace('product-card-img-', '')) || (badge && badge.getAttribute('data-badge-name-product-id'));
+      var v = pvFor(id);
+      if (!v || !img) return;
+      item.dataset.ibTile = '1';
+      $$('.btn-product-card-select-variant, .product-card-footer .btn', item).forEach(function (b) { b.innerHTML = 'اطلب الآن ' + I.arrow; b.classList.add('ib-cardbtn'); });
+      item.classList.add('ib-card');
+      img.classList.add('ib-hide');
+      img.insertAdjacentHTML('afterend',
+        '<div class="ib-tile' + (v.vip ? ' ib-tile--vip' : '') + '"><span class="ib-tile__tag">' + v.tag + '</span>' +
+        '<p class="ib-tile__big"><b>' + v.big + '</b>' + (v.unit ? '<span>' + v.unit + '</span>' : '') + '</p>' +
+        '<div class="ib-tile__wave" aria-hidden="true">' + waveBars(22, v.big.length * 5) + '</div></div>');
+    });
+  }
+
+  /* ---------- كروت المنتجات بالتصنيفات: إخفاء 0.00 ---------- */
+  function fixCards() {
+    /* سعر الكرت مباشرة (يشمل «قد يعجبك أيضًا») */
+    $$('.product-item .product-price, .product-item .section-product-price').forEach(function (el) {
+      if (el.dataset.ib || !/^\s*0[.,]00/.test(el.textContent)) return;
+      var item = el.closest('.product-item');
+      var a = item && item.querySelector('a[href*="/products/"]');
+      var href = decodeURIComponent((a && a.getAttribute('href')) || '');
+      el.dataset.ib = '1';
+      el.innerHTML = '<span class="ib-from">' + (/VIP|105da1b6/i.test(href) ? 'يبدأ من 1,500 ر.س' : 'يبدأ من 190 ر.س') + '</span>';
+      if (item) item.dataset.ib = '1';
+    });
+    $$('a[href*="/products/"]').forEach(function (a) {
+      var href = decodeURIComponent(a.getAttribute('href') || '');
+      var card = a.closest('.product-item, .product-card, [class*="product-item"], [class*="card"]');
+      if (!card || card.dataset.ib) return;
+      $$('*', card).forEach(function (el) {
+        if (el.children.length === 0 && /^\s*0[.,]00\s*/.test(el.textContent) && el.textContent.length < 20) {
+          card.dataset.ib = '1';
+          el.innerHTML = /VIP|105da1b6/i.test(href) ? 'يبدأ من 1,500 ر.س' : 'يبدأ من 190 ر.س';
+          el.classList.add('ib-from');
+        }
+      });
+    });
+  }
+
+  /* ---------- زر واتساب عائم ---------- */
+  function floatWA() {
+    if ($('.ib-wa-float')) return;
+    document.body.appendChild(h('<a class="ib-wa-float" href="' + waLink() + '" target="_blank" rel="noopener" aria-label="تواصل واتساب">' + I.wa + '<span>استفسار؟</span></a>'));
+  }
+
+  ready(function () {
+    document.documentElement.classList.add('ib-on');
+    try { buildHome(); } catch (e) { console.warn('ib home', e); }
+    try { buildSamples(); } catch (e) { console.warn('ib samples', e); }
+    try { fixNav(); } catch (e) { console.warn('ib nav', e); }
+    try { buildInner(); } catch (e) { console.warn('ib inner', e); }
+    try { fixDescription(); } catch (e) { console.warn('ib desc', e); }
+    try { productVisual(); } catch (e) { console.warn('ib pvis', e); }
+    try { enhanceOrderForm(); } catch (e) { console.warn('ib form', e); }
+    try { cardTiles(); } catch (e) { console.warn('ib tiles', e); }
+    try { buildProduct(); } catch (e) { console.warn('ib product', e); }
+    try { fixCards(); } catch (e) { console.warn('ib cards', e); }
+    /* كروت تنحمّل متأخر (قد يعجبك أيضًا) */
+    var tm = null;
+    try { new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { try { fixCards(); cardTiles(); } catch (e) {} }, 150); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {}
+    try { floatWA(); } catch (e) { console.warn('ib wa', e); }
+  });
+})();
