@@ -723,6 +723,10 @@ html.ib-on .footer .logistics-pay-icons img{height:20px!important;width:auto!imp
 .ib-kicker{display:none!important}
 .ib-phero .ib-hero__in, .ib-hero--s .ib-hero__in{padding-top:6px}
 
+/* v1.10 أيقونات الثيم (السلة وغيرها): خط الأيقونات لأجزاء الأيقونة — أعلى أولوية من القاعدة العامة حتى لو بقيت نسخة قديمة عبر @import */
+html.ib-on.ib-on body div [class^="icon-"] > span[class^="path"],
+html.ib-on.ib-on body div [class*=" icon-"] > span[class^="path"]{font-family:'icomoon'!important}
+
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
