@@ -449,41 +449,53 @@
 
   /* ---------- آلية العمل: رحلة تفاعلية ---------- */
   var JOURNEY = [
-    ['doc', 'ترسل النص', 'نصًّا جاهزًا ومدقّقًا لغويًا، مع المدة والأسلوب الذي تريده.'],
-    ['wa', 'ننسّق عبر الواتساب', 'نتفق على النبرة والإيقاع وطريقة النطق قبل التسجيل.'],
-    ['ear', 'عيّنة للاعتماد', 'تسمع الأداء أولًا، ونعتمده معك قبل التنفيذ الكامل.'],
-    ['check', 'التسليم', 'ملفات WAV وMP3 نظيفة وجاهزة للنشر مباشرة.']
+    ['doc', 'ترسل النص', 'أرسل النص جاهزًا ومدقّقًا لغويًا، مع المدة المطلوبة والأسلوب الذي تفضّله. ويمكنك إرفاق مثال لأداء أعجبك.', ['نص جاهز', 'المدة', 'الأسلوب']],
+    ['wa', 'ننسّق عبر الواتساب', 'نراجع النص معك ونتفق على النبرة والإيقاع ونطق الأسماء والمصطلحات قبل أن نبدأ التسجيل.', ['النبرة', 'الإيقاع', 'نطق الأسماء']],
+    ['ear', 'عيّنة للاعتماد', 'نرسل إليك مقطعًا قصيرًا من الأداء لتسمعه وتعتمده، ثم نسجّل النسخة الكاملة على أساسه.', ['عيّنة قصيرة', 'ملاحظاتك', 'اعتماد']],
+    ['check', 'التسليم', 'نسلّمك الملفات النهائية بصيغتي WAV وMP3، نظيفة وجاهزة للنشر، خلال يومين إلى ثلاثة أيام عمل أو 24 ساعة مع التسليم السريع.', ['WAV · MP3', 'جاهزة للنشر', 'تسليم سريع']]
   ];
   function journeyHTML() {
-    return '<div class="ib-journey" data-ib-journey>' +
-      '<div class="ib-journey__wave" aria-hidden="true">' + waveBars(72, 3) + '</div>' +
-      '<ol class="ib-journey__steps">' + JOURNEY.map(function (j, i) {
-        return '<li' + (i === 0 ? ' class="is-on"' : '') + ' data-i="' + i + '"><button type="button">' +
-          '<span class="ib-journey__dot">' + I[j[0]] + '<i>' + (i + 1) + '</i></span>' +
-          '<b>' + j[1] + '</b><small>' + j[2] + '</small></button></li>';
-      }).join('') + '</ol></div>';
+    return '<div class="ib-jr" data-ib-journey>' +
+      '<div class="ib-jr__track" aria-hidden="true"><i></i></div>' +
+      '<ol class="ib-jr__tabs" role="tablist">' + JOURNEY.map(function (j, i) {
+        return '<li><button type="button" role="tab" class="ib-jr__tab' + (i === 0 ? ' is-on' : '') + '" aria-selected="' + (i === 0) + '" data-i="' + i + '">' +
+          '<span class="ib-jr__ic">' + I[j[0]] + '</span><span class="ib-jr__n">0' + (i + 1) + '</span><b>' + j[1] + '</b>' +
+          '<span class="ib-jr__chev" aria-hidden="true"></span></button></li>';
+      }).join('') + '</ol>' +
+      '<div class="ib-jr__panel" role="tabpanel" aria-live="polite"></div></div>';
+  }
+  function journeyPanel(i) {
+    var j = JOURNEY[i], last = i === JOURNEY.length - 1;
+    return '<div class="ib-jr__in"><span class="ib-jr__big">0' + (i + 1) + '</span>' +
+      '<div class="ib-jr__body"><p class="ib-jr__k">الخطوة ' + ['الأولى', 'الثانية', 'الثالثة', 'الرابعة'][i] + '</p><h3>' + j[1] + '</h3><p>' + j[2] + '</p>' +
+      '<ul class="ib-jr__chips">' + j[3].map(function (c) { return '<li>' + c + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="ib-jr__act">' + (last
+        ? '<a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب تعليقك الصوتي ' + I.arrow + '</a>'
+        : '<button type="button" class="ib-btn ib-btn--line ib-jr__next" data-next="' + (i + 1) + '">الخطوة التالية ' + I.arrow + '</button>') +
+      '</div></div>';
   }
   function initJourney() {
     var root = $('[data-ib-journey]');
     if (!root || root.dataset.ok) return;
     root.dataset.ok = '1';
-    var items = $$('.ib-journey__steps li', root), bars = $$('.ib-journey__wave i', root), cur = 0, timer = null, paused = false;
-    var set = function (i) {
-      cur = i;
-      items.forEach(function (li, k) { li.classList.toggle('is-on', k === i); li.classList.toggle('is-done', k < i); });
-      var upto = Math.round((i + 1) / items.length * bars.length);
-      bars.forEach(function (b, k) { b.classList.toggle('is-lit', k < upto); });
-      root.style.setProperty('--ib-j', String(i));
+    var tabs = $$('.ib-jr__tab', root), panel = $('.ib-jr__panel', root), list = $('.ib-jr__tabs', root);
+    var mq = window.matchMedia('(max-width: 767px)');
+    var set = function (i, focus) {
+      tabs.forEach(function (t, k) { t.classList.toggle('is-on', k === i); t.classList.toggle('is-done', k < i); t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+      root.style.setProperty('--ib-jp', (i / (tabs.length - 1) * 100) + '%');
+      /* الجوال: التفاصيل تنفتح تحت البطاقة نفسها */
+      if (mq.matches) tabs[i].parentNode.appendChild(panel); else if (panel.parentNode !== root) root.appendChild(panel);
+      panel.classList.remove('is-in');
+      panel.innerHTML = journeyPanel(i);
+      void panel.offsetWidth;
+      panel.classList.add('is-in');
+      var nx = $('.ib-jr__next', panel);
+      if (nx) nx.addEventListener('click', function () { set(+nx.dataset.next, true); });
+      if (focus && mq.matches) tabs[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
-    var tick = function () { if (!paused) set((cur + 1) % items.length); };
-    items.forEach(function (li, k) { $('button', li).addEventListener('click', function () { set(k); clearInterval(timer); timer = setInterval(tick, 3200); }); });
-    root.addEventListener('mouseenter', function () { paused = true; });
-    root.addEventListener('mouseleave', function () { paused = false; });
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { set(k); }); });
+    try { mq.addEventListener('change', function () { var on = tabs.filter(function (t) { return t.classList.contains('is-on'); })[0]; set(tabs.indexOf(on)); }); } catch (e) {}
     set(0);
-    var start = function () { if (!timer) timer = setInterval(tick, 3200); };
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); }); }, { threshold: .3 }).observe(root);
-    } else start();
   }
 
   /* ---------- صفحة الباقات ---------- */
