@@ -929,6 +929,15 @@ html.ib-hb header .sticky{position:relative!important;top:auto!important}
 .header{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .header{opacity:1;animation:none}
 @media (max-width:767px){.ib-journey{padding:36px 0 30px}}
+/* v1.18 مثلث التشغيل في المنتصف + أيقونة الرئيسية أعلى يمين القائمة */
+.ib-play .ib-ic,.ib-pill-play .ib-ic{display:grid!important;place-items:center;line-height:0}
+.ib-play svg,.ib-pill-play .ib-ic svg{display:block;margin:auto}
+.ib-hhome{display:inline-flex;align-items:center;justify-content:center;flex:none;width:40px;height:40px;border-radius:12px;color:#fff!important;opacity:.85;transition:opacity .2s,text-shadow .2s,background .2s}
+.ib-hhome svg{width:22px;height:22px}
+.ib-hhome:hover{opacity:1;background:rgba(255,255,255,.06);filter:drop-shadow(0 0 8px rgba(234,156,51,.8))}
+html.ib-hb header .top-main-menu-wrapper .ib-hhome{margin-inline-end:6px}
+.ib-hhome--m{display:none}
+@media (max-width:991px){.ib-hhome--m{display:inline-flex;margin-inline-start:6px}}
 
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}

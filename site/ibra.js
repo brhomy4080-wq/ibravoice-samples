@@ -51,7 +51,7 @@
   };
 
   var I = {
-    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 5.6v12.8a1 1 0 0 0 1.52.85l10.1-6.4a1 1 0 0 0 0-1.7L8.92 4.75A1 1 0 0 0 7.4 5.6z"/></svg>',
     pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></svg>',
     mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
@@ -544,6 +544,9 @@
         if (badge) new MutationObserver(function () { var n = $('.ib-hcart__n'); if (n) n.textContent = badge.textContent.trim(); }).observe(badge, { childList: true, characterData: true, subtree: true });
       } catch (e) {}
     }
+    if (wrap && !$('.ib-hhome', wrap)) wrap.insertAdjacentHTML('afterbegin', '<a class="ib-hhome" href="/" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية">' + I.home + '</a>');
+    var mgrp = $('header .search-header .header-logo');
+    if (mgrp && !$('.ib-hhome', mgrp)) mgrp.insertAdjacentHTML('beforeend', '<a class="ib-hhome ib-hhome--m" href="/" aria-label="الصفحة الرئيسية">' + I.home + '</a>');
     decorateMenu();
   }
 
