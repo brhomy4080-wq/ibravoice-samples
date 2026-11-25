@@ -757,24 +757,32 @@
       if (sel && !sel.value) return $('.ib-durs', info) || sel;
       return null;
     };
+    var shown = false;
+    var hintText = function (miss) {
+      if (!miss) return '';
+      if (miss.classList && miss.classList.contains('ib-durs')) return 'اختر مدة التعليق الصوتي أولًا، ثم أضف الطلب إلى السلة.';
+      return 'أدخل رقم الواتساب للتنسيق أولًا، ثم أضف الطلب إلى السلة.';
+    };
     var syncHint = function () {
-      var off = isOff();
-      hint.classList.toggle('is-on', off);
-      if (off) {
-        var miss = firstMissing();
-        hint.textContent = miss && miss.classList && miss.classList.contains('ib-durs') ? 'اختر مدة التعليق الصوتي لتفعيل زر الإضافة إلى السلة.'
-          : (sel ? 'أدخل رقم الواتساب واختر المدة لتفعيل زر الإضافة إلى السلة.' : 'أدخل رقم الواتساب لتفعيل زر الإضافة إلى السلة.');
-      }
+      var miss = firstMissing();
+      var on = !!miss && (shown || isOff());
+      hint.classList.toggle('is-on', on);
+      if (on) hint.textContent = hintText(miss);
     };
     syncHint();
     try { new MutationObserver(syncHint).observe(btn, { attributes: true, attributeFilter: ['disabled', 'class', 'aria-disabled'] }); } catch (e) {}
     info.addEventListener('input', function () { setTimeout(syncHint, 50); });
     info.addEventListener('change', function () { setTimeout(syncHint, 50); });
-    /* الضغط على زر معطّل: ننقل العميل للحقل الناقص */
+    /* الضغط والحقول ناقصة: زد لا يُظهر أي رسالة، فنوضّح السبب وننقل العميل للحقل الناقص */
     (btn.parentNode || info).addEventListener('click', function (e) {
-      if (!isOff()) return;
+      if (!btn.contains(e.target) && e.target !== btn) return;
       var miss = firstMissing();
-      if (miss) { miss.scrollIntoView({ behavior: 'smooth', block: 'center' }); if (miss.focus) try { miss.focus({ preventScroll: true }); } catch (x) {} miss.classList.add('ib-shake'); setTimeout(function () { miss.classList.remove('ib-shake'); }, 700); }
+      if (!miss) return;
+      e.preventDefault(); e.stopPropagation();
+      shown = true; syncHint();
+      miss.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (miss.focus) try { miss.focus({ preventScroll: true }); } catch (x) {}
+      miss.classList.add('ib-shake'); setTimeout(function () { miss.classList.remove('ib-shake'); }, 700);
     }, true);
 
     /* 3) بعد الإضافة للسلة: زر «إتمام الطلب» واضح */
@@ -787,7 +795,7 @@
         '<a class="ib-btn ib-btn--ink" href="/cart">إتمام الطلب ' + I.arrow + '</a></div>');
     };
     btn.addEventListener('click', function () {
-      if (isOff()) return;
+      if (isOff() || firstMissing()) return;
       before = count();
       var tries = 0, t = setInterval(function () {
         tries++;
