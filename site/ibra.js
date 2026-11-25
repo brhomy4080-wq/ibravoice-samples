@@ -31,8 +31,8 @@
       { t: 'الوثائقي', d: 'رسمي وموثوق للأفلام الوثائقية', f: '01-documentary.mp3', g: 'info' },
       { t: 'الرد الآلي', d: 'واضح وسلس لأنظمة IVR', f: '03-ivr.mp3', g: 'biz' },
       { t: 'الإخباري', d: 'جاد ومحايد بنبرة نشرة', f: '04-news.mp3', g: 'info' },
-      { t: 'التعليمي', d: 'بسيط يوصل المعلومة بسهولة', f: '05-education.mp3', g: 'info' },
-      { t: 'القصصي', d: 'مشوّق يشد المستمع للنهاية', f: '06-story.mp3', g: 'art' },
+      { t: 'التعليمي', d: 'بسيط يُوصل المعلومة بسهولة', f: '05-education.mp3', g: 'info' },
+      { t: 'القصصي', d: 'مشوّق يشدّ المستمع حتى النهاية', f: '06-story.mp3', g: 'art' },
       { t: 'الشعر', d: 'إلقاء يبرز الإيقاع والإحساس', f: '07-poetry.mp3', g: 'art' },
       { t: 'الدرامي', d: 'تعبير عاطفي للمشاهد التمثيلية', f: '08-drama.mp3', g: 'art' },
       { t: 'التوعوي', d: 'موجّه لقضايا صحية واجتماعية', f: '09-awareness.mp3', g: 'info' },
@@ -74,7 +74,7 @@
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function h(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
-  function waLink(msg) { return 'https://wa.me/' + C.wa + '?text=' + encodeURIComponent(msg || 'السلام عليكم، أبي أستفسر عن التعليق الصوتي'); }
+  function waLink(msg) { return 'https://wa.me/' + C.wa + '?text=' + encodeURIComponent(msg || 'السلام عليكم، أرغب في الاستفسار عن التعليق الصوتي'); }
   function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
   function money(n) { return Number(n).toLocaleString('en-US'); }
   var SAR = '<span class="ib-sar">ر.س</span>';
@@ -154,20 +154,20 @@
       '<section class="ib-feats"><div class="ib-wrap ib-feats__grid">' +
         feat(I.mic, 'جودة استوديو', 'تسجيل ومعالجة احترافية، وملفات WAV وMP3 جاهزة.') +
         feat(I.ear, 'عيّنة قبل التنفيذ', 'تسمع الأداء وتعتمده قبل النسخة النهائية.') +
-        feat(I.clock, 'تسليم سريع', 'من 2 إلى 3 أيام عمل، أو خلال 24 ساعة.') +
+        feat(I.clock, 'تسليم سريع', 'من يومين إلى ثلاثة أيام عمل، أو خلال 24 ساعة.') +
         feat(I.wa, 'تنسيق مباشر', 'نتفق معك على النبرة والأسلوب عبر الواتساب.') +
       '</div></section>' +
 
       /* العيّنات */
       '<section class="ib-sec ib-sec--cream" id="ib-samples"><div class="ib-wrap">' +
-        head('اسمع قبل تطلب', '12 لون أداء.', 'اختر الأقرب لمشروعك.', 'اضغط تشغيل وجرّب بنفسك — كل عيّنة 15 ثانية.') +
+        head('اسمع قبل أن تطلب', '12 لون أداء.', 'اختر الأقرب إلى مشروعك.', 'اضغط على التشغيل وجرّب بنفسك، مدة كل عيّنة 15 ثانية.') +
         '<div class="ib-samples">' + C.samples.map(sampleCard).join('') + '</div>' +
         '<div class="ib-center ib-more-wrap"><button type="button" class="ib-btn ib-btn--line" data-ib-more>اعرض كل العيّنات (12)</button></div>' +
       '</div></section>' +
 
       /* الأسعار */
       '<section class="ib-sec" id="ib-plans"><div class="ib-wrap">' +
-        head('الأسعار', 'اختر اللي', 'يناسب مشروعك.', 'أسعار واضحة بدون مفاجآت، وتقدر تقسّط مع تمارا.') +
+        head('الأسعار', 'اختر ما', 'يناسب مشروعك.', 'أسعار واضحة دون مفاجآت، مع إمكانية التقسيط عبر تمارا وإمكان.') +
         '<div class="ib-plans">' +
           '<article class="ib-plan">' +
             '<p class="ib-plan__tag">طلب فردي</p><h3>تعليق صوتي</h3>' +
@@ -194,7 +194,7 @@
               li('أولوية قصوى في التنفيذ') + li('استشارة قبل التسجيل') + li('أكثر من تجربة أداء') + li('تواصل مباشر طوال المشروع') +
             '</ul>' +
             '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vip + '">اطلب VIP</a>' +
-            '<a class="ib-link" href="' + waLink('السلام عليكم، عندي مشروع وأبي عرض سعر VIP') + '" target="_blank" rel="noopener">أو اطلب عرض سعر على الواتساب</a>' +
+            '<a class="ib-link" href="' + waLink('السلام عليكم، لديّ مشروع وأرغب في عرض سعر VIP') + '" target="_blank" rel="noopener">أو اطلب عرض سعر عبر الواتساب</a>' +
           '</article>' +
         '</div>' +
       '</div></section>' +
@@ -206,7 +206,7 @@
         head('آلية العمل', 'من الفكرة', 'إلى الملف النهائي.', '') +
         '<ol class="ib-steps">' +
           step('ترسل النص', 'نصًّا جاهزًا ومدقّقًا لغويًا.') +
-          step('ننسّق على الواتساب', 'نتفق على النبرة والأسلوب والمدة.') +
+          step('ننسّق عبر الواتساب', 'نتفق على النبرة والأسلوب والمدة.') +
           step('عيّنة للاعتماد', 'تسمع الأداء قبل التنفيذ الكامل.') +
           step('التسليم', 'ملفات WAV وMP3 جاهزة للاستخدام.') +
         '</ol>' +
@@ -218,7 +218,7 @@
 
       /* الأسئلة */
       '<section class="ib-sec ib-sec--cream"><div class="ib-wrap ib-faq-wrap">' +
-        head('أسئلة شائعة', 'قبل', 'لا تطلب.', '') +
+        head('أسئلة شائعة', 'قبل', 'أن تطلب.', '') +
         '<div class="ib-faq">' +
           faq('ما مدة التنفيذ؟', 'من يومين إلى ثلاثة أيام عمل بحسب طبيعة المشروع، ويمكنك اختيار التسليم خلال 24 ساعة مقابل 200 ر.س إضافية.') +
           faq('هل تشمل الخدمة كتابة النص؟', 'تشمل الخدمة التسجيل الصوتي فقط، ويُرسل النص جاهزًا ومدقّقًا لغويًا مع الطلب.') +
@@ -250,7 +250,7 @@
   }
   function reelsHTML() {
     return '<section class="ib-sec ib-sec--ink" id="ib-reels"><div class="ib-wrap">' +
-      head('من حساباتي', 'صوتي ووجهي،', 'بدون فلتر.', '', true) +
+      head('من حساباتي', 'صوتي ووجهي،', 'دون فلتر.', '', true) +
       '<div class="ib-reels">' + C.reels.map(function (r) {
         return '<figure class="ib-reel" data-id="' + r.id + '"><div class="ib-reel__frame"></div><figcaption>' + r.t + '</figcaption></figure>';
       }).join('') + '</div>' +
@@ -260,10 +260,10 @@
   function finalHTML() {
     return '<section class="ib-final"><div class="ib-wrap ib-final__in">' +
       '<h2>فكرتك صوتها مسموع.</h2>' +
-      '<p>اختر المدة، أرسل النص، والباقي علينا.</p>' +
+      '<p>اختر المدة، وأرسل النص، ونتولّى الباقي.</p>' +
       '<div class="ib-actions ib-actions--center">' +
         '<a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب الآن ' + I.arrow + '</a>' +
-        '<a class="ib-btn ib-btn--wa" href="' + waLink() + '" target="_blank" rel="noopener">' + I.wa + ' كلّمني واتساب</a>' +
+        '<a class="ib-btn ib-btn--wa" href="' + waLink() + '" target="_blank" rel="noopener">' + I.wa + ' تواصل عبر الواتساب</a>' +
       '</div>' +
     '</div></section>';
   }
@@ -287,8 +287,8 @@
     var html = '<div class="ib-home ib-spage">' +
       '<section class="ib-hero ib-hero--a ib-hero--s"><div class="ib-wrap ib-hero__in">' +
         '<p class="ib-kicker ib-kicker--light">العيّنات الصوتية</p>' +
-        '<h1>اسمع قبل تطلب،<br><em>واختر صوت فكرتك.</em></h1>' +
-        '<p class="ib-lead">12 لون أداء، كل عيّنة 15 ثانية. اضغط تشغيل وجرّب بنفسك.</p>' +
+        '<h1>اسمع قبل أن تطلب،<br><em>واختر صوت فكرتك.</em></h1>' +
+        '<p class="ib-lead">12 لون أداء، مدة كل عيّنة 15 ثانية. اضغط على التشغيل وجرّب بنفسك.</p>' +
         '<div class="ib-actions ib-actions--center">' +
           '<button type="button" class="ib-pill-play" data-ib-all aria-label="شغّل الكل"><span class="ib-ic">' + I.play + '</span><span class="ib-pill-play__t">شغّل كل العيّنات</span><span class="ib-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>' +
         '</div>' +
@@ -300,13 +300,13 @@
         }).join('') + '</div>' +
         '<div class="ib-samples is-all ib-samples--page">' + C.samples.map(function (s, i) {
           return sampleCard(s, i).replace('<article class="ib-sample" data-ib-card>', '<article class="ib-sample" data-ib-card data-g="' + s.g + '">')
-            .replace('<div class="ib-bar"><i></i></div></div>', '<div class="ib-bar"><i></i></div><a class="ib-sample__go" href="' + C.links.vo + '">اطلب بهالأسلوب ' + I.arrow + '</a></div>');
+            .replace('<div class="ib-bar"><i></i></div></div>', '<div class="ib-bar"><i></i></div><a class="ib-sample__go" href="' + C.links.vo + '">اطلب بهذا الأسلوب ' + I.arrow + '</a></div>');
         }).join('') + '</div>' +
-        '<p class="ib-note-c">ما لقيت الأسلوب اللي في بالك؟ <a href="' + waLink('السلام عليكم، أبي أسلوب أداء معيّن لمشروعي') + '" target="_blank" rel="noopener">كلّمني على الواتساب</a> ونتفق على الأسلوب.</p>' +
+        '<p class="ib-note-c">لم تجد الأسلوب الذي تبحث عنه؟ <a href="' + waLink('السلام عليكم، أرغب في أسلوب أداء معيّن لمشروعي') + '" target="_blank" rel="noopener">تواصل معنا عبر الواتساب</a> لنتفق على الأسلوب المناسب.</p>' +
       '</div></section>' +
 
       '<section class="ib-sec"><div class="ib-wrap">' +
-        head('الخطوة الجاية', 'عجبك الصوت؟', 'اختر طريقتك.', '') +
+        head('الخطوة التالية', 'أعجبك الصوت؟', 'اختر ما يناسبك.', '') +
         '<div class="ib-next">' +
           nextCard(C.links.vo, 'مقطع واحد', 'يبدأ من 190 ر.س', 'لإعلان أو فيديو أو رد آلي.') +
           nextCard(C.links.packs, 'الباقات', 'المقطع من 279 ر.س', 'لمحتوى مستمر بهوية صوتية ثابتة.', true) +
@@ -362,7 +362,7 @@
     '</div></section>';
   }
   function ctaStrip() {
-    return '<div class="ib-strip"><div><h3>جاهز تسمع صوت فكرتك؟</h3><p>اسمع العيّنات، واطلب بخطوتين.</p></div>' +
+    return '<div class="ib-strip"><div><h3>هل أنت مستعد لسماع صوت فكرتك؟</h3><p>استمع إلى العيّنات، واطلب بخطوتين.</p></div>' +
       '<div class="ib-actions"><a class="ib-btn ib-btn--accent" href="' + C.links.vo + '">اطلب تعليقك الصوتي ' + I.arrow + '</a>' +
       '<a class="ib-btn ib-btn--line" href="' + C.links.samples + '">اسمع العيّنات</a></div></div>';
   }
@@ -379,7 +379,7 @@
       var isAbout = /من نحن/.test(title);
       var cur = POLICIES.filter(function (x) { return x[1] === title; })[0];
       app.insertBefore(h(pageHero(isAbout ? 'تعرّف عليّ' : 'سياسات المتجر', title,
-        isAbout ? 'معلّق صوتي · أكثر من 1,000 مشروع صوتي' : 'بوضوح، قبل لا تطلب.')), app.firstChild);
+        isAbout ? 'معلّق صوتي · أكثر من 1,000 مشروع صوتي' : 'بوضوح، قبل أن تطلب.')), app.firstChild);
       var body = $('.blog-text', blog);
       if (body) {
         body.classList.add('ib-prose');
@@ -431,7 +431,7 @@
     $$('h2', d).forEach(function (h2) {
       if (/اسمع العي/.test(h2.textContent)) {
         var p = h2.nextElementSibling;
-        if (p && p.tagName === 'P') { p.textContent = 'اسمع 12 لون أداء حقيقي، واختر الأقرب لمشروعك. '; p.insertAdjacentHTML('beforeend', '<a href="' + C.links.samples + '">اسمع العيّنات ←</a>'); }
+        if (p && p.tagName === 'P') { p.textContent = 'استمع إلى 12 لون أداء حقيقي، واختر الأقرب إلى مشروعك. '; p.insertAdjacentHTML('beforeend', '<a href="' + C.links.samples + '">اسمع العيّنات ←</a>'); }
       }
     });
   }
@@ -535,7 +535,7 @@
         '<div class="ib-disc">' +
           '<span class="ib-ring"></span><span class="ib-ring"></span><span class="ib-ring"></span>' +
           '<button class="ib-play ib-play--disc" data-ib-play data-src="02-ad.mp3" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span></button>' +
-          '<p class="ib-disc__t">اضغط واسمع صوتي</p>' +
+          '<p class="ib-disc__t">اضغط واستمع إلى صوتي</p>' +
         '</div>' +
       '</div></section>';
     }
@@ -545,8 +545,8 @@
       return '<section class="ib-hero ib-hero--c" data-ib-card>' + bg + '<div class="ib-wrap ib-hero__in">' +
         '<p class="ib-hero__pre">أكثر من</p>' +
         odo(1000, 'ib-odo--xl') +
-        '<p class="ib-hero__label">مشروع وصله صوتي</p>' +
-        '<p class="ib-hero__who">من <b>وزارة الثقافة</b> و<b>سدايا</b>… وفكرتك الجاية؟</p>' +
+        '<p class="ib-hero__label">مشروع وصل إليه صوتي</p>' +
+        '<p class="ib-hero__who">من <b>وزارة الثقافة</b> و<b>سدايا</b>… وفكرتك التالية؟</p>' +
         '<div class="ib-actions ib-actions--center">' + order + playPill('اسمع صوتي') + '</div>' +
       '</div></section>';
     }
@@ -622,7 +622,7 @@
     if (anchor && !$('.ib-mini', info)) {
       var picks = [C.samples[0], C.samples[1], C.samples[2]];
       anchor.insertAdjacentHTML('afterend',
-        '<div class="ib-mini"><p class="ib-mini__t">' + I.ear + ' اسمع قبل تطلب</p><div class="ib-mini__row">' +
+        '<div class="ib-mini"><p class="ib-mini__t">' + I.ear + ' اسمع قبل أن تطلب</p><div class="ib-mini__row">' +
         picks.map(function (s) {
           return '<div class="ib-mini__s" data-ib-card><button class="ib-play" data-ib-play data-src="' + s.f + '" aria-label="تشغيل"><span class="ib-ic">' + I.play + '</span></button><span>' + s.t + '</span><div class="ib-bar"><i></i></div></div>';
         }).join('') +
@@ -637,17 +637,17 @@
     if (!info || info.dataset.ibForm) return;
     info.dataset.ibForm = '1';
 
-    /* المدة: كروت بدل القائمة المنسدلة */
+    /* المدة: كروت بدل القائمة المنسدلة — السعر المعروض = السعر الأساسي + فرق المدة */
+    var base = basePrice(info);
     $$('select[data-type="DROPDOWN"]', info).forEach(function (sel) {
       var opts = $$('option', sel).filter(function (o) { return o.value; });
       if (!opts.length || opts.length > 6) return;
       var box = h('<div class="ib-durs" role="radiogroup"></div>');
       opts.forEach(function (o) {
         var txt = o.textContent.replace(/\s+/g, ' ').trim();
-        var m = /(\d[\d,]*)[.,]\d{2}/.exec(txt) || /\+\s*(\d[\d,]*)/.exec(txt);
-        var price = m ? parseInt(m[1].replace(/,/g, ''), 10) : '';
+        var price = base + plusOf(txt);
         var name = txt.split('(')[0].trim();
-        var b = h('<button type="button" class="ib-dur" role="radio" aria-checked="false"><b>' + name + '</b>' + (price ? '<span>' + price + ' ' + SAR + '</span>' : '') + '</button>');
+        var b = h('<button type="button" class="ib-dur" role="radio" aria-checked="false"><b>' + name + '</b>' + (price ? '<span>' + money(price) + ' ' + SAR + '</span>' : '') + '</button>');
         b.addEventListener('click', function () {
           sel.value = o.value;
           sel.dispatchEvent(new Event('change', { bubbles: true }));
@@ -663,7 +663,7 @@
     $$('.file-label', info).forEach(function (l) {
       l.classList.add('ib-drop');
       var btn = $('button', l);
-      if (btn) btn.innerHTML = I.up + ' اختر ملف';
+      if (btn) btn.innerHTML = I.up + ' اختر ملفًا';
     });
 
     /* صياغة فصحى لنصوص الخيارات */
@@ -702,6 +702,101 @@
       cb.addEventListener('change', sync); cb.addEventListener('input', sync);
     });
   }
+  /* السعر الأساسي للمنتج (يُحفظ قبل أي تعديل على عنصر السعر) */
+  function basePrice(info) {
+    var el = $('.product-formatted-price', info);
+    if (!el) return 0;
+    if (el.dataset.base === undefined) {
+      var m = /(\d[\d,]*(?:\.\d+)?)/.exec(el.textContent.replace(/\s+/g, ''));
+      el.dataset.base = m ? parseFloat(m[1].replace(/,/g, '')) : 0;
+    }
+    return parseFloat(el.dataset.base) || 0;
+  }
+  /* فرق السعر في نص الخيار: «( + 160.00 ر.س )» أو «+200 ر.س» */
+  function plusOf(txt) {
+    var m = /\+\s*([\d,]+(?:\.\d+)?)/.exec(String(txt).replace(/\s+/g, ' '));
+    return m ? parseFloat(m[1].replace(/,/g, '')) : 0;
+  }
+
+  /* ---------- تجربة الطلب: سعر مباشر + تنبيه الحقول المطلوبة + زر إتمام الطلب ---------- */
+  function orderUX() {
+    var info = $('.col-product-info');
+    if (!info || info.dataset.ibUx) return;
+    info.dataset.ibUx = '1';
+    var priceEl = $('.product-formatted-price', info);
+    var sel = $('select[data-type="DROPDOWN"]', info);
+    var cbs = $$('.custom-checkbox-input', info).filter(function (cb) { var f = cb.closest('.form-group'); return !(f && f.classList.contains('ib-hide')); });
+    var base = basePrice(info);
+
+    /* 1) السعر يتحدّث مع اختيار المدة والتسليم السريع */
+    if (priceEl && base > 0 && (sel || cbs.length)) {
+      var render = function () {
+        var total = base, chosen = !sel;
+        if (sel) { var o = sel.options[sel.selectedIndex]; if (o && o.value) { total += plusOf(o.textContent); chosen = true; } }
+        cbs.forEach(function (cb) { if (cb.checked) { var l = cb.closest('label'); total += plusOf(l ? l.textContent : ''); } });
+        priceEl.classList.add('ib-price', 'ib-price--live');
+        priceEl.innerHTML = '<small>' + (chosen ? 'الإجمالي' : 'يبدأ من') + '</small> ' + money(total) + ' ' + SAR;
+      };
+      if (sel) sel.addEventListener('change', render);
+      cbs.forEach(function (cb) { cb.addEventListener('change', render); });
+      render();
+    }
+
+    /* 2) زر الإضافة معطّل؟ نوضّح السبب ونوجّه للحقل الناقص */
+    var btn = $$('button', info).filter(function (b) { return /أضف إلى السلة/.test(b.textContent); })[0];
+    if (!btn) return;
+    var wrap = btn.closest('.form-group, .d-flex, div') || btn.parentNode;
+    var hint = h('<p class="ib-req-hint" role="status">أدخل رقم الواتساب واختر المدة لتفعيل زر الإضافة إلى السلة.</p>');
+    wrap.insertAdjacentElement('afterend', hint);
+    var isOff = function () { return btn.disabled || btn.classList.contains('disabled') || btn.getAttribute('aria-disabled') === 'true'; };
+    var firstMissing = function () {
+      var req = $$('input[required], textarea[required], select[required]', info).filter(function (x) { return !x.value; })[0];
+      if (req) return req;
+      var wa = $$('input', info).filter(function (x) { return /05/.test(x.getAttribute('placeholder') || '') && !x.value; })[0];
+      if (wa) return wa;
+      if (sel && !sel.value) return $('.ib-durs', info) || sel;
+      return null;
+    };
+    var syncHint = function () {
+      var off = isOff();
+      hint.classList.toggle('is-on', off);
+      if (off) {
+        var miss = firstMissing();
+        hint.textContent = miss && miss.classList && miss.classList.contains('ib-durs') ? 'اختر مدة التعليق الصوتي لتفعيل زر الإضافة إلى السلة.'
+          : (sel ? 'أدخل رقم الواتساب واختر المدة لتفعيل زر الإضافة إلى السلة.' : 'أدخل رقم الواتساب لتفعيل زر الإضافة إلى السلة.');
+      }
+    };
+    syncHint();
+    try { new MutationObserver(syncHint).observe(btn, { attributes: true, attributeFilter: ['disabled', 'class', 'aria-disabled'] }); } catch (e) {}
+    info.addEventListener('input', function () { setTimeout(syncHint, 50); });
+    info.addEventListener('change', function () { setTimeout(syncHint, 50); });
+    /* الضغط على زر معطّل: ننقل العميل للحقل الناقص */
+    (btn.parentNode || info).addEventListener('click', function (e) {
+      if (!isOff()) return;
+      var miss = firstMissing();
+      if (miss) { miss.scrollIntoView({ behavior: 'smooth', block: 'center' }); if (miss.focus) try { miss.focus({ preventScroll: true }); } catch (x) {} miss.classList.add('ib-shake'); setTimeout(function () { miss.classList.remove('ib-shake'); }, 700); }
+    }, true);
+
+    /* 3) بعد الإضافة للسلة: زر «إتمام الطلب» واضح */
+    var badge = $('header .cart-badge');
+    var count = function () { var b = $('header .cart-badge'); return b ? parseInt(b.textContent, 10) || 0 : 0; };
+    var before = count();
+    var showDone = function () {
+      if ($('.ib-added', info)) return;
+      hint.insertAdjacentHTML('afterend', '<div class="ib-added" role="status"><span>' + I.check + ' أُضيف طلبك إلى السلة.</span>' +
+        '<a class="ib-btn ib-btn--ink" href="/cart">إتمام الطلب ' + I.arrow + '</a></div>');
+    };
+    btn.addEventListener('click', function () {
+      if (isOff()) return;
+      before = count();
+      var tries = 0, t = setInterval(function () {
+        tries++;
+        if (count() > before || $$('.toast, .alert-success, [class*="toast"]').some(function (x) { return /تم إضافة|أضيف|السلة بنجاح/.test(x.textContent); })) { clearInterval(t); showDone(); }
+        else if (tries > 40) clearInterval(t);
+      }, 250);
+    });
+  }
+
   /* ---------- بطاقات بصرية بدل صور المنتجات ---------- */
   var PV = {
     '3b457ceb': { tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
@@ -763,10 +858,13 @@
   function fixCards() {
     /* سعر الكرت مباشرة (يشمل «قد يعجبك أيضًا») */
     $$('.product-item .product-price, .product-item .section-product-price').forEach(function (el) {
-      if (el.dataset.ib || !/^\s*0[.,]00/.test(el.textContent)) return;
+      if (el.dataset.ib) return;
       var item = el.closest('.product-item');
       var a = item && item.querySelector('a[href*="/products/"]');
       var href = decodeURIComponent((a && a.getAttribute('href')) || '');
+      /* التعليق الصوتي سعره الأساسي 190: نكتبها «يبدأ من» لأن المدد الأطول أغلى */
+      var isVO = /\/products\/(VO|3b457ceb)/i.test(href) && /^\s*190[.,]00/.test(el.textContent);
+      if (!isVO && !/^\s*0[.,]00/.test(el.textContent)) return;
       el.dataset.ib = '1';
       el.innerHTML = '<span class="ib-from">' + (/VIP|105da1b6/i.test(href) ? 'يبدأ من 1,500 ر.س' : 'يبدأ من 190 ر.س') + '</span>';
       if (item) item.dataset.ib = '1';
@@ -788,7 +886,7 @@
   /* ---------- زر واتساب عائم ---------- */
   function floatWA() {
     if ($('.ib-wa-float')) return;
-    document.body.appendChild(h('<a class="ib-wa-float" href="' + waLink() + '" target="_blank" rel="noopener" aria-label="تواصل واتساب">' + I.wa + '<span>استفسار؟</span></a>'));
+    document.body.appendChild(h('<a class="ib-wa-float" href="' + waLink() + '" target="_blank" rel="noopener" aria-label="تواصل عبر الواتساب">' + I.wa + '<span>استفسار؟</span></a>'));
   }
 
   ready(function () {
@@ -802,6 +900,7 @@
     try { enhanceOrderForm(); } catch (e) { console.warn('ib form', e); }
     try { cardTiles(); } catch (e) { console.warn('ib tiles', e); }
     try { buildProduct(); } catch (e) { console.warn('ib product', e); }
+    try { orderUX(); } catch (e) { console.warn('ib order', e); }
     try { fixCards(); } catch (e) { console.warn('ib cards', e); }
     /* كروت تنحمّل متأخر (قد يعجبك أيضًا) */
     var tm = null;
