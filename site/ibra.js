@@ -155,7 +155,7 @@
         feat(I.mic, 'جودة استوديو', 'تسجيل ومعالجة احترافية، وملفات WAV وMP3 جاهزة.') +
         feat(I.ear, 'عيّنة قبل التنفيذ', 'تسمع الأداء وتعتمده قبل النسخة النهائية.') +
         feat(I.clock, 'تسليم سريع', 'من 2 إلى 3 أيام عمل، أو خلال 24 ساعة.') +
-        feat(I.edit, 'نكتب نصّك', 'ما عندك نص؟ نكتبه لك من فكرتك بـ 100 ر.س.') +
+        feat(I.wa, 'تنسيق مباشر', 'نتفق معك على النبرة والأسلوب عبر الواتساب.') +
       '</div></section>' +
 
       /* العيّنات */
@@ -205,7 +205,7 @@
       '<section class="ib-sec ib-sec--cream"><div class="ib-wrap">' +
         head('آلية العمل', 'من الفكرة', 'إلى الملف النهائي.', '') +
         '<ol class="ib-steps">' +
-          step('ترسل النص أو الفكرة', 'ما عندك نص؟ نكتبه لك بـ 100 ر.س.') +
+          step('ترسل النص', 'نصًّا جاهزًا ومدقّقًا لغويًا.') +
           step('ننسّق على الواتساب', 'نتفق على النبرة والأسلوب والمدة.') +
           step('عيّنة للاعتماد', 'تسمع الأداء قبل التنفيذ الكامل.') +
           step('التسليم', 'ملفات WAV وMP3 جاهزة للاستخدام.') +
@@ -221,7 +221,7 @@
         head('أسئلة شائعة', 'قبل', 'لا تطلب.', '') +
         '<div class="ib-faq">' +
           faq('ما مدة التنفيذ؟', 'من يومين إلى ثلاثة أيام عمل بحسب طبيعة المشروع، ويمكنك اختيار التسليم خلال 24 ساعة مقابل 200 ر.س إضافية.') +
-          faq('ليس لدي نص جاهز، فما الحل؟', 'اختر خدمة «اكتب لي النص» مع طلبك مقابل 100 ر.س، وتتوفر في الباقات بسعر مخفّض. نكتب النص من فكرتك ونعتمده معك قبل التسجيل.') +
+          faq('هل تشمل الخدمة كتابة النص؟', 'تشمل الخدمة التسجيل الصوتي فقط، ويُرسل النص جاهزًا ومدقّقًا لغويًا مع الطلب.') +
           faq('هل يمكن التعديل على التسجيل؟', 'نرسل إليك عيّنة لاعتمادها قبل النسخة النهائية، ونصحّح أي خطأ من جهتنا دون رسوم إضافية. ويُحتسب تغيير النص أو النبرة بعد بدء العمل بنسبة 50% من قيمة الخدمة.') +
           faq('ما صيغ الملفات المسلّمة؟', 'ملفات MP3 أو WAV بجودة استوديو، جاهزة للإعلانات والفيديو والبودكاست.') +
           faq('ما طرق الدفع المتاحة؟', 'أبل باي، ومدى، وفيزا، والتحويل البنكي، أو التقسيط عبر تمارا على أربع دفعات. ويُدفع كامل المبلغ مقدّمًا.') +
@@ -630,7 +630,7 @@
     }
   }
 
-  /* ---------- نموذج الطلب: مدة ككروت، ملفات، خيارات كبطاقات، كتابة المحتوى ---------- */
+  /* ---------- نموذج الطلب: مدة ككروت، ملفات، خيارات كبطاقات (لا توجد خدمة كتابة محتوى) ---------- */
   var WRITE_RX = /اكتبه لي|اكتب لي النص|كتابة المحتوى/;
   function enhanceOrderForm() {
     var info = $('.col-product-info');
@@ -669,7 +669,14 @@
     /* صياغة فصحى لنصوص الخيارات */
     var FIX = [['ما عندي نص، اكتبه لي', 'ليس لدي نص، اكتبه لي'], ['كل نصوص الباقة', 'جميع نصوص الباقة'],
       ['تسليم في أسررررررع وقت! خلال أقل من 24 ساعة', 'تسليم سريع خلال 24 ساعة'],
-      ['من يوم إلى 3 أيام حسب حجم الطلب', 'من يومين إلى ثلاثة أيام عمل']];
+      ['من يوم إلى 3 أيام حسب حجم الطلب', 'من يومين إلى ثلاثة أيام عمل'],
+      ['نص التعليق الصوتي أو فكرة المشروع', 'نص التعليق الصوتي'], ['نصوص التعليق الصوتي أو فكرة المشروع', 'نصوص التعليق الصوتي'],
+      ['اكتب النصوص، أو شارك فكرتك إذا اخترت خدمة كتابة المحتوى، وبنتواصل معك للتنسيق قبل التنفيذ.', 'الصق النصوص جاهزة ومدقّقة لغويًا.'],
+      ['اكتب نص التعليق الصوتي', 'الصق النص جاهزًا ومدقّقًا لغويًا.']];
+    $$('textarea, input[type="text"]', info).forEach(function (el) {
+      var ph = el.getAttribute('placeholder') || '';
+      FIX.forEach(function (f) { if (ph.indexOf(f[0]) > -1) el.setAttribute('placeholder', ph.replace(f[0], f[1])); });
+    });
     var tw = document.createTreeWalker(info, NodeFilter.SHOW_TEXT);
     while (tw.nextNode()) { var tn = tw.currentNode; FIX.forEach(function (f) { if (tn.nodeValue.indexOf(f[0]) > -1) tn.nodeValue = tn.nodeValue.replace(f[0], f[1]); }); }
 
@@ -679,35 +686,21 @@
       if (!lab) return;
       lab.classList.add('ib-opt');
       var t = lab.textContent;
+      if (WRITE_RX.test(t)) { if (cb.checked) cb.click(); var fg = lab.closest('.form-group') || lab; fg.classList.add('ib-hide'); fg.style.display = 'none'; return; }
       /* خيار بدون رسوم: «مشمولة» بدل (+ 0.00 ر.س) */
       $$('.custom-checkbox-label > span', lab).forEach(function (sp) {
         var tx = sp.textContent.replace(/\s+/g, ' ');
         if (/\(\s*\+\s*0[.,]00/.test(tx)) sp.innerHTML = '<em class="ib-free">مشمولة</em>';
         else { var pm = /\(\s*\+\s*([\d,]+)(?:[.,]\d+)?/.exec(tx); if (pm) sp.innerHTML = '<em class="ib-ptag">+' + pm[1] + ' ' + SAR + '</em>'; }
       });
-      var ic = /24 ساعة|سريع/.test(t) ? I.bolt : WRITE_RX.test(t) ? I.edit : I.check;
+      var ic = /24 ساعة|سريع/.test(t) ? I.bolt : I.check;
       lab.insertAdjacentHTML('afterbegin', '<span class="ib-opt__ic">' + ic + '</span>');
       var sync = function () {
         lab.classList.toggle('is-on', cb.checked);
-        if (WRITE_RX.test(t)) writeNote(cb.checked, lab);
       };
       cb.addEventListener('change', sync); cb.addEventListener('input', sync);
     });
   }
-  function writeNote(on, lab) {
-    var note = $('.ib-wnote');
-    var ta = $('.col-product-info textarea');
-    if (on && !note) {
-      lab.closest('.form-group').insertAdjacentHTML('afterend',
-        '<div class="ib-wnote" role="status"><span class="ib-wnote__ic">' + I.wa + '</span><div><b>تم، سنكتب لك النص.</b>' +
-        '<p>سنتواصل معك عبر الواتساب لكتابة النص واعتماده قبل التسجيل. اكتب فكرتك باختصار في خانة النص.</p></div></div>');
-      if (ta) { ta.dataset.ph = ta.getAttribute('placeholder') || ''; ta.setAttribute('placeholder', 'اكتب فكرتك باختصار: ما المنتج؟ ومن الجمهور؟ وما الرسالة المطلوبة؟'); }
-    } else if (!on && note) {
-      note.remove();
-      if (ta && ta.dataset.ph !== undefined) ta.setAttribute('placeholder', ta.dataset.ph);
-    }
-  }
-
   /* ---------- بطاقات بصرية بدل صور المنتجات ---------- */
   var PV = {
     '3b457ceb': { tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
