@@ -667,7 +667,9 @@
     });
 
     /* صياغة فصحى لنصوص الخيارات */
-    var FIX = [['ما عندي نص، اكتبه لي', 'ليس لدي نص، اكتبه لي'], ['كل نصوص الباقة', 'جميع نصوص الباقة']];
+    var FIX = [['ما عندي نص، اكتبه لي', 'ليس لدي نص، اكتبه لي'], ['كل نصوص الباقة', 'جميع نصوص الباقة'],
+      ['تسليم في أسررررررع وقت! خلال أقل من 24 ساعة', 'تسليم سريع خلال 24 ساعة'],
+      ['من يوم إلى 3 أيام حسب حجم الطلب', 'من يومين إلى ثلاثة أيام عمل']];
     var tw = document.createTreeWalker(info, NodeFilter.SHOW_TEXT);
     while (tw.nextNode()) { var tn = tw.currentNode; FIX.forEach(function (f) { if (tn.nodeValue.indexOf(f[0]) > -1) tn.nodeValue = tn.nodeValue.replace(f[0], f[1]); }); }
 
