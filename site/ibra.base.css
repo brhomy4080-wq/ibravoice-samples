@@ -825,6 +825,7 @@ html.ib-is-cat .subTitle-detail,html.ib-is-cat .products-list.ib-hide{display:no
   .ib-packs__custom{flex-direction:column;align-items:flex-start}
   .ib-packs__custom .ib-actions{flex-wrap:wrap;width:100%}
 }
+.ib-pvis--vip .ib-pvis__big b,.ib-tile--vip .ib-tile__big b{background:none!important;-webkit-text-fill-color:currentColor;color:var(--ib-accent)!important}
 
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
