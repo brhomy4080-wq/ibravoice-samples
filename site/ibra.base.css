@@ -892,6 +892,9 @@ html.ib-on .btn-add-to-cart:hover *{color:var(--ib-ink)!important}
 /* v1.14 سحب الصفحة لفوق (ارتداد الماك): الخلفية خلف الصفحة كحلية بدل الشريط الفاتح، وبلا ارتداد */
 html.ib-on{background:#0b2734!important;overscroll-behavior-y:none}
 html.ib-on body{background:var(--ib-paper);overscroll-behavior-y:none}
+/* v1.15 الثيم يضيف فراغ 130px أعلى المحتوى عند التمرير (للهيدر القديم المحذوف) — نلغيه */
+@media (min-width:992px){html.ib-hb .app-content{padding-top:0!important}}
+@media (max-width:991px){html.ib-hb .app-content{padding-top:0!important}html.ib-hb:has(header .sticky) .app-content{padding-top:56px!important}}
 
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}

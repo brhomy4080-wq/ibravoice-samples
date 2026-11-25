@@ -530,6 +530,8 @@
     if (!$('#ib-hb-css')) document.head.insertAdjacentHTML('beforeend', '<style id="ib-hb-css">' +
       'html.ib-on header .upper-bar,html.ib-on header .announcement-bar{display:none!important}' +
       'html.ib-on{background:#0b2734!important;overscroll-behavior-y:none}html.ib-on body{background:#fffdf9;overscroll-behavior-y:none}' +
+      '@media(min-width:992px){html.ib-hb .app-content{padding-top:0!important}}' +
+      '@media(max-width:991px){html.ib-hb .app-content{padding-top:0!important}html.ib-hb:has(header .sticky) .app-content{padding-top:56px!important}}' +
       '@media(min-width:992px){html.ib-hb header .search-header{display:none!important}html.ib-hb body header>.dark{height:64px!important;background:linear-gradient(180deg,#0a2430,#0b2734)!important;border:0!important}html.ib-hb body header>.dark>.div-bg-absolute{background:transparent!important}}' +
       '@media(max-width:991px){html.ib-hb body header .search-header{background:#0b2734!important}html.ib-hb header .search-header .image-logo,html.ib-hb header .sm-search-icon{display:none!important}}' +
       '</style>');
