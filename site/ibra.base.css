@@ -724,6 +724,6 @@ html.ib-on .footer .logistics-pay-icons img{height:20px!important;width:auto!imp
 .ib-phero .ib-hero__in, .ib-hero--s .ib-hero__in{padding-top:6px}
 
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 2.5 ثانية لو صار شي */
-.app-content{opacity:0;animation:ibReveal .01s 2.5s forwards}
+.app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
 @keyframes ibReveal{to{opacity:1}}
