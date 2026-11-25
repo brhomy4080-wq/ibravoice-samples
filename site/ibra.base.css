@@ -919,6 +919,16 @@ html.ib-hb header .sticky{position:relative!important;top:auto!important}
 .ib-reel__pf svg{width:14px;height:14px}
 .ib-reel--ig .ib-reel__frame iframe{background:#fff}
 @media (max-width:767px){.ib-x1c{min-width:50px;height:32px;font-size:17px}.ib-journey__wave{inset:0 -16px}}
+/* v1.17 الموجة أوضح خلف الخطوات + إخفاء هيدر الثيم الأصلي لحظة التحميل */
+.ib-journey{padding:60px 0 50px}
+.ib-journey__wave{inset:0 -8px;gap:6px}
+.ib-journey__wave i{background:rgba(11,39,52,.09);border-radius:4px}
+.ib-journey__wave i.is-lit{background:linear-gradient(180deg,#f2b863,var(--ib-accent));opacity:.9}
+.ib-journey__steps button{background:rgba(255,255,255,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ib-journey__steps li.is-on button{background:rgba(255,255,255,.94)}
+.header{opacity:0;animation:ibReveal .01s 4s forwards}
+html.ib-on .header{opacity:1;animation:none}
+@media (max-width:767px){.ib-journey{padding:36px 0 30px}}
 
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
