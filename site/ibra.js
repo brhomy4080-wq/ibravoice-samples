@@ -696,13 +696,21 @@
       var src = pl === 'yt' ? 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&playsinline=1&modestbranding=1'
         : pl === 'ig' ? 'https://www.instagram.com/reel/' + id + '/embed/'
         : 'https://www.tiktok.com/player/v1/' + id + '?controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
+      if (f.dataset.auto) src += (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
       $('.ib-reel__frame', f).innerHTML = '<iframe src="' + src + '" loading="lazy" allow="encrypted-media; fullscreen; autoplay" allowfullscreen title="' + (f.dataset.t || '') + '"></iframe>';
     };
-    if (!('IntersectionObserver' in window)) { figs.forEach(load); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
-    }, { rootMargin: '300px' });
-    figs.forEach(function (f) { io.observe(f); });
+    /* خفّة: غلاف ثابت أولًا، ومشغّل تيك توك ينحمّل فقط لما العميل يضغط */
+    var COVER = 'https://cdn.jsdelivr.net/gh/brhomy4080-wq/ibravoice-samples@429b6bf29a33afa56bff3da66c03a0a389785ff6/img/reels/';
+    figs.forEach(function (f) {
+      if (f.dataset.facade) return;
+      f.dataset.facade = '1';
+      var fr = $('.ib-reel__frame', f);
+      fr.innerHTML = '<button type="button" class="ib-reel__cover" aria-label="تشغيل: ' + (f.dataset.t || '') + '">' +
+        '<img src="' + COVER + f.dataset.id + '.jpg" alt="" loading="lazy" decoding="async"><span class="ib-reel__play">' + I.play + '</span></button>';
+      $('.ib-reel__cover', fr).addEventListener('click', function () {
+        f.dataset.auto = '1'; load(f);
+      });
+    });
   }
 
   /* ---------- صفحة المنتج ---------- */

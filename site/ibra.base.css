@@ -952,6 +952,28 @@ html.ib-hb header .top-main-menu-wrapper .ib-hhome{margin-inline-end:6px}
 .ib-reel figcaption{display:none!important}
 @media (max-width:767px){.ib-journey__wave{height:48px!important}}
 
+/* v1.20 خفّة الحركة: نوقف الحركات المستمرة الثقيلة ونخلي الباقي على transform فقط */
+.ib-plan--feat{animation:none!important}
+.ib-plan--feat::after{animation:ibSheenT 7s ease-in-out infinite!important;inset-inline-start:0!important;will-change:transform}
+@keyframes ibSheenT{0%,62%{transform:translateX(160%) skewX(-18deg)}82%,100%{transform:translateX(-360%) skewX(-18deg)}}
+[dir="ltr"] .ib-plan--feat::after{animation-direction:reverse!important}
+.ib-sw{animation:none!important}
+.ib-dot{animation:ibPingO 1.8s ease-in-out infinite!important;box-shadow:0 0 0 4px rgba(234,156,51,.18)!important}
+@keyframes ibPingO{50%{opacity:.45}}
+html.ib-on .search-header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+/* الموجة: بلا اهتزاز مستمر — تكبر مرة وحدة لما تتعبى */
+.ib-journey__wave i{transform:scaleY(.6);transform-origin:center;transition:transform .6s cubic-bezier(.2,.8,.2,1),background .6s ease}
+.ib-journey__wave i.is-lit{animation:none!important;transform:scaleY(1)}
+/* المقاطع: غلاف ثابت حتى الضغط */
+.ib-reel__frame::before{display:none!important;animation:none!important}
+.ib-reel__cover{all:unset;position:absolute;inset:0;display:block;cursor:pointer;overflow:hidden;border-radius:inherit;background:#0b2734}
+.ib-reel__cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.ib-reel__cover:hover img{transform:scale(1.03)}
+.ib-reel__play{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(11,39,52,.72);color:var(--ib-accent);box-shadow:0 0 0 6px rgba(234,156,51,.2);transition:transform .2s ease}
+.ib-reel__play svg{width:24px;height:24px;fill:currentColor}
+.ib-reel__cover:hover .ib-reel__play{transform:scale(1.08)}
+.ib-reel__frame{position:relative}
+
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
