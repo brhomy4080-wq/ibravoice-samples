@@ -41,12 +41,12 @@
       { t: 'الحماسي', d: 'طاقة عالية للرياضة والعروض', f: '12-hype.mp3', g: 'biz' }
     ],
     reels: [
-      { p: 'ig', id: 'Dai29G6I8fv', t: 'ليه أحب التعليق الصوتي؟' },
-      { p: 'yt', id: 'XLOLJxkA9MQ', t: 'أعترف أن لساني يجيد الصمت' },
+      { p: 'tt', id: '7660245006539590933', t: 'ليه أحب التعليق الصوتي؟' },
       { p: 'tt', id: '7659124938997107989', t: 'فما عيني تساعدني فأبكي' },
-      { p: 'ig', id: 'DalCW7kI4DK', t: 'الطيبين للطيبات' },
-      { p: 'yt', id: '_2FGcgpya7Q', t: 'وش الشيء اللي يعيد شحنك فعلًا؟' },
-      { p: 'tt', id: '7608673386834808084', t: 'انفض غبار الهم عن قلبك' }
+      { p: 'tt', id: '7660565293743230229', t: 'الطيبين للطيبات' },
+      { p: 'tt', id: '7611255918487014677', t: 'هادئين جدًا' },
+      { p: 'tt', id: '7608673386834808084', t: 'انفض غبار الهم عن قلبك' },
+      { p: 'tt', id: '7665351611467779348', t: 'طاقتك لها حد' }
     ]
   };
 
@@ -260,8 +260,7 @@
       head('من حساباتي', 'صوتي ووجهي،', 'دون فلتر.', '', true) +
       '<div class="ib-reels">' + C.reels.map(function (r) {
         var pf = { tt: ['tiktok', 'تيك توك'], yt: ['youtube', 'يوتيوب'], ig: ['instagram', 'انستقرام'] }[r.p || 'tt'];
-        return '<figure class="ib-reel ib-reel--' + (r.p || 'tt') + '" data-id="' + r.id + '" data-p="' + (r.p || 'tt') + '"><div class="ib-reel__frame"></div>' +
-          '<figcaption><span class="ib-reel__pf" title="' + pf[1] + '">' + I[pf[0]] + '</span>' + r.t + '</figcaption></figure>';
+        return '<figure class="ib-reel ib-reel--' + (r.p || 'tt') + '" data-id="' + r.id + '" data-p="' + (r.p || 'tt') + '" data-t="' + r.t + '"><div class="ib-reel__frame"></div></figure>';
       }).join('') + '</div>' +
       '<div class="ib-follow"><p class="ib-handle" dir="ltr">@' + C.handle + '</p>' + socialRow('ib-social--center') + '</div>' +
     '</div></section>';
@@ -697,7 +696,7 @@
       var src = pl === 'yt' ? 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&playsinline=1&modestbranding=1'
         : pl === 'ig' ? 'https://www.instagram.com/reel/' + id + '/embed/'
         : 'https://www.tiktok.com/player/v1/' + id + '?controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
-      $('.ib-reel__frame', f).innerHTML = '<iframe src="' + src + '" loading="lazy" allow="encrypted-media; fullscreen; autoplay" allowfullscreen title="' + ($('figcaption', f).textContent) + '"></iframe>';
+      $('.ib-reel__frame', f).innerHTML = '<iframe src="' + src + '" loading="lazy" allow="encrypted-media; fullscreen; autoplay" allowfullscreen title="' + (f.dataset.t || '') + '"></iframe>';
     };
     if (!('IntersectionObserver' in window)) { figs.forEach(load); return; }
     var io = new IntersectionObserver(function (es) {
