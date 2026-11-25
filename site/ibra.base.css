@@ -889,6 +889,10 @@ html.ib-on .btn-add-to-cart:hover *{color:var(--ib-ink)!important}
   .ib-x1c{top:12px;left:12px}
 }
 
+/* v1.14 سحب الصفحة لفوق (ارتداد الماك): الخلفية خلف الصفحة كحلية بدل الشريط الفاتح، وبلا ارتداد */
+html.ib-on{background:#0b2734!important;overscroll-behavior-y:none}
+html.ib-on body{background:var(--ib-paper);overscroll-behavior-y:none}
+
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
