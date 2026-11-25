@@ -41,12 +41,12 @@
       { t: 'الحماسي', d: 'طاقة عالية للرياضة والعروض', f: '12-hype.mp3', g: 'biz' }
     ],
     reels: [
-      { id: '7660245006539590933', t: 'ليه أحب التعليق الصوتي؟' },
-      { id: '7659124938997107989', t: 'فما عيني تساعدني فأبكي' },
-      { id: '7660565293743230229', t: 'الطيبين للطيبات' },
-      { id: '7611255918487014677', t: 'هادئين جدًا' },
-      { id: '7608673386834808084', t: 'انفض غبار الهم عن قلبك' },
-      { id: '7665351611467779348', t: 'طاقتك لها حد' }
+      { p: 'ig', id: 'Dai29G6I8fv', t: 'ليه أحب التعليق الصوتي؟' },
+      { p: 'yt', id: 'XLOLJxkA9MQ', t: 'أعترف أن لساني يجيد الصمت' },
+      { p: 'tt', id: '7659124938997107989', t: 'فما عيني تساعدني فأبكي' },
+      { p: 'ig', id: 'DalCW7kI4DK', t: 'الطيبين للطيبات' },
+      { p: 'yt', id: '_2FGcgpya7Q', t: 'وش الشيء اللي يعيد شحنك فعلًا؟' },
+      { p: 'tt', id: '7608673386834808084', t: 'انفض غبار الهم عن قلبك' }
     ]
   };
 
@@ -206,7 +206,7 @@
             '<ul class="ib-list">' +
               li('أولوية قصوى في التنفيذ') + li('استشارة قبل التسجيل') + li('أكثر من تجربة أداء') + li('تواصل مباشر طوال المشروع') +
             '</ul>' +
-            '<a class="ib-btn ib-btn--wa ib-btn--block" href="' + waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي') + '" target="_blank" rel="noopener">' + I.wa + ' تواصل عبر الواتساب</a>' +
+            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي') + '" target="_blank" rel="noopener">' + I.wa + ' تواصل عبر الواتساب</a>' +
           '</article>' +
         '</div>' +
       '</div></section>' +
@@ -259,7 +259,9 @@
     return '<section class="ib-sec ib-sec--ink" id="ib-reels"><div class="ib-wrap">' +
       head('من حساباتي', 'صوتي ووجهي،', 'دون فلتر.', '', true) +
       '<div class="ib-reels">' + C.reels.map(function (r) {
-        return '<figure class="ib-reel" data-id="' + r.id + '"><div class="ib-reel__frame"></div><figcaption>' + r.t + '</figcaption></figure>';
+        var pf = { tt: ['tiktok', 'تيك توك'], yt: ['youtube', 'يوتيوب'], ig: ['instagram', 'انستقرام'] }[r.p || 'tt'];
+        return '<figure class="ib-reel ib-reel--' + (r.p || 'tt') + '" data-id="' + r.id + '" data-p="' + (r.p || 'tt') + '"><div class="ib-reel__frame"></div>' +
+          '<figcaption><span class="ib-reel__pf" title="' + pf[1] + '">' + I[pf[0]] + '</span>' + r.t + '</figcaption></figure>';
       }).join('') + '</div>' +
       '<div class="ib-follow"><p class="ib-handle" dir="ltr">@' + C.handle + '</p>' + socialRow('ib-social--center') + '</div>' +
     '</div></section>';
@@ -455,11 +457,11 @@
   ];
   function journeyHTML() {
     return '<div class="ib-journey" data-ib-journey>' +
-      '<div class="ib-journey__wave" aria-hidden="true">' + waveBars(64, 3) + '</div>' +
+      '<div class="ib-journey__wave" aria-hidden="true">' + waveBars(72, 3) + '</div>' +
       '<ol class="ib-journey__steps">' + JOURNEY.map(function (j, i) {
         return '<li' + (i === 0 ? ' class="is-on"' : '') + ' data-i="' + i + '"><button type="button">' +
           '<span class="ib-journey__dot">' + I[j[0]] + '<i>' + (i + 1) + '</i></span>' +
-          '<b>' + j[1] + '</b><small>' + j[2] + '</small><span class="ib-journey__bar"><i></i></span></button></li>';
+          '<b>' + j[1] + '</b><small>' + j[2] + '</small></button></li>';
       }).join('') + '</ol></div>';
   }
   function initJourney() {
@@ -530,8 +532,7 @@
     if (!$('#ib-hb-css')) document.head.insertAdjacentHTML('beforeend', '<style id="ib-hb-css">' +
       'html.ib-on header .upper-bar,html.ib-on header .announcement-bar{display:none!important}' +
       'html.ib-on{background:#0b2734!important;overscroll-behavior-y:none}html.ib-on body{background:#fffdf9;overscroll-behavior-y:none}' +
-      '@media(min-width:992px){html.ib-hb .app-content{padding-top:0!important}}' +
-      '@media(max-width:991px){html.ib-hb .app-content{padding-top:0!important}html.ib-hb:has(header .sticky) .app-content{padding-top:56px!important}}' +
+      'html.ib-hb .app-content{padding-top:0!important}html.ib-hb .header{position:sticky!important;top:0;z-index:60}html.ib-hb header .sticky{position:relative!important;top:auto!important}' +
       '@media(min-width:992px){html.ib-hb header .search-header{display:none!important}html.ib-hb body header>.dark{height:64px!important;background:linear-gradient(180deg,#0a2430,#0b2734)!important;border:0!important}html.ib-hb body header>.dark>.div-bg-absolute{background:transparent!important}}' +
       '@media(max-width:991px){html.ib-hb body header .search-header{background:#0b2734!important}html.ib-hb header .search-header .image-logo,html.ib-hb header .sm-search-icon{display:none!important}}' +
       '</style>');
@@ -689,8 +690,10 @@
     var load = function (f) {
       if (f.dataset.loaded) return;
       f.dataset.loaded = '1';
-      var src = 'https://www.tiktok.com/player/v1/' + f.dataset.id +
-        '?controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
+      var id = f.dataset.id, pl = f.dataset.p || 'tt';
+      var src = pl === 'yt' ? 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0&playsinline=1&modestbranding=1'
+        : pl === 'ig' ? 'https://www.instagram.com/reel/' + id + '/embed/'
+        : 'https://www.tiktok.com/player/v1/' + id + '?controls=1&progress_bar=1&play_button=1&volume_control=1&fullscreen_button=1&music_info=0&description=0&rel=0&native_context_menu=0&closed_caption=0';
       $('.ib-reel__frame', f).innerHTML = '<iframe src="' + src + '" loading="lazy" allow="encrypted-media; fullscreen; autoplay" allowfullscreen title="' + ($('figcaption', f).textContent) + '"></iframe>';
     };
     if (!('IntersectionObserver' in window)) { figs.forEach(load); return; }
