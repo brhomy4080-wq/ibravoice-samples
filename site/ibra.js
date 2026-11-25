@@ -224,7 +224,7 @@
           faq('هل تشمل الخدمة كتابة النص؟', 'تشمل الخدمة التسجيل الصوتي فقط، ويُرسل النص جاهزًا ومدقّقًا لغويًا مع الطلب.') +
           faq('هل يمكن التعديل على التسجيل؟', 'نرسل إليك عيّنة لاعتمادها قبل النسخة النهائية، ونصحّح أي خطأ من جهتنا دون رسوم إضافية. ويُحتسب تغيير النص أو النبرة بعد بدء العمل بنسبة 50% من قيمة الخدمة.') +
           faq('ما صيغ الملفات المسلّمة؟', 'ملفات MP3 أو WAV بجودة استوديو، جاهزة للإعلانات والفيديو والبودكاست.') +
-          faq('ما طرق الدفع المتاحة؟', 'أبل باي، ومدى، وفيزا، والتحويل البنكي، أو التقسيط عبر تمارا على أربع دفعات. ويُدفع كامل المبلغ مقدّمًا.') +
+          faq('ما طرق الدفع المتاحة؟', 'أبل باي، ومدى، وفيزا، والتحويل البنكي، أو التقسيط عبر تمارا أو إمكان. ويُدفع كامل المبلغ مقدّمًا.') +
           faq('ما سياسة الاسترداد؟', 'عند الإلغاء قبل بدء التنفيذ يُسترد 50% من المبلغ، ولا يُسترد المبلغ بعد بدء التنفيذ. <a href="' + C.links.refund + '">التفاصيل</a>') +
         '</div>' +
       '</div></section>' +
@@ -400,7 +400,7 @@
       sub.insertAdjacentHTML('beforebegin', pageHero(isPacks ? 'الباقات' : 'المتجر', t,
         isPacks ? 'لمحتوى مستمر بهوية صوتية ثابتة. 5 أو 10 مقاطع، المقطع يبدأ من 279 ر.س، وكل مقطع حتى 30 ثانية.' : ''));
       var list = $('.products-list', app);
-      if (list && isPacks) list.insertAdjacentHTML('afterend', '<p class="ib-note-c">تحتاج أكثر من 50 مقطع أو مشروع خاص؟ <a href="' + C.links.vip + '">اطلب VIP</a> أو <a href="' + waLink('السلام عليكم، أبي باقة مخصّصة') + '" target="_blank" rel="noopener">كلّمني واتساب</a>.</p>');
+      if (list && isPacks) list.insertAdjacentHTML('afterend', '<p class="ib-note-c">تحتاج أكثر من 10 مقاطع أو مشروعًا خاصًا؟ <a href="' + C.links.vip + '">اطلب VIP</a> أو <a href="' + waLink('السلام عليكم، أرغب في باقة مخصّصة') + '" target="_blank" rel="noopener">تواصل معنا عبر الواتساب</a>.</p>');
       return;
     }
 
@@ -414,7 +414,7 @@
     /* خيارات الدفع والتسليم */
     if ($('.tab-content-shipping', app)) {
       root.classList.add('ib-is-ship');
-      app.insertBefore(h(pageHero('قبل الطلب', 'الدفع والتسليم', 'أبل باي، مدى، فيزا، تحويل بنكي، أو قسّطها مع تمارا. والتسليم ملفات رقمية على الواتساب أو الإيميل.')), app.firstChild);
+      app.insertBefore(h(pageHero('قبل الطلب', 'الدفع والتسليم', 'أبل باي، ومدى، وفيزا، والتحويل البنكي، أو التقسيط عبر تمارا وإمكان. ويكون التسليم ملفات رقمية عبر الواتساب أو البريد الإلكتروني.')), app.firstChild);
       /* خدمة رقمية: لا شحن — نفتح تبويب الدفع مباشرة */
       var pay = $('a.profile-row[onclick*="v-pills-profile"]');
       $$('a.profile-row[onclick*="v-pills-home"], .li-pills-home').forEach(function (a) { a.classList.add('ib-hide'); });
@@ -468,7 +468,7 @@
       soc.classList.add('ib-social', 'ib-social--foot');
       soc.insertAdjacentHTML('beforeend', '<a href="' + waLink() + '" target="_blank" rel="noopener" aria-label="واتساب" title="واتساب">' + I.wa + '</a>');
       C.socials.forEach(function (x) { soc.insertAdjacentHTML('beforeend', '<a href="' + x.u + '" target="_blank" rel="noopener" aria-label="' + x.t + '" title="' + x.t + '">' + I[x.k] + '</a>'); });
-      if (mail) { mail.innerHTML = I.mail; mail.setAttribute('aria-label', 'الإيميل'); mail.removeAttribute('target'); soc.appendChild(mail); }
+      if (mail) { mail.innerHTML = I.mail; mail.setAttribute('aria-label', 'البريد الإلكتروني'); mail.removeAttribute('target'); soc.appendChild(mail); }
     }
   }
 
@@ -613,7 +613,7 @@
     Object.keys(packs).forEach(function (k) {
       if (path.indexOf(k) > -1 && priceEl && !$('.ib-per', info)) {
         var p = packs[k];
-        priceEl.insertAdjacentHTML('afterend', '<p class="ib-per">يعني <b>' + Math.round(p[0] / p[1]) + ' ر.س</b> للمقطع · كل مقطع حتى 30 ثانية</p>');
+        priceEl.insertAdjacentHTML('afterend', '<p class="ib-per">أي <b>' + Math.round(p[0] / p[1]) + ' ر.س</b> للمقطع · كل مقطع حتى 30 ثانية</p>');
       }
     });
 
@@ -672,7 +672,8 @@
       ['من يوم إلى 3 أيام حسب حجم الطلب', 'من يومين إلى ثلاثة أيام عمل'],
       ['نص التعليق الصوتي أو فكرة المشروع', 'نص التعليق الصوتي'], ['نصوص التعليق الصوتي أو فكرة المشروع', 'نصوص التعليق الصوتي'],
       ['اكتب النصوص، أو شارك فكرتك إذا اخترت خدمة كتابة المحتوى، وبنتواصل معك للتنسيق قبل التنفيذ.', 'الصق النصوص جاهزة ومدقّقة لغويًا.'],
-      ['اكتب نص التعليق الصوتي', 'الصق النص جاهزًا ومدقّقًا لغويًا.']];
+      ['اكتب نص التعليق الصوتي', 'الصق النص جاهزًا ومدقّقًا لغويًا.'],
+      ['ملفات أخرى للنص التعليق الصوتي، لأعمال مشابهة أو لأي ملفات مساندة', 'ملف النص أو أي ملفات مساندة، مثل أعمال مشابهة.']];
     $$('textarea, input[type="text"]', info).forEach(function (el) {
       var ph = el.getAttribute('placeholder') || '';
       FIX.forEach(function (f) { if (ph.indexOf(f[0]) > -1) el.setAttribute('placeholder', ph.replace(f[0], f[1])); });

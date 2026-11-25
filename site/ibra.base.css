@@ -10,7 +10,7 @@
 }
 
 /* ===== أساسيات ===== */
-html.ib-on body, html.ib-on body *:not(i):not([class^="icon-"]):not([class*=" icon-"]):not(.fa){font-family:var(--ib-font)!important}
+html.ib-on body, html.ib-on body *:not(i):not([class^="icon-"]):not([class*=" icon-"]):not(.fa):not([class^="icon-"] *):not([class*=" icon-"] *){font-family:var(--ib-font)!important}
 html.ib-on body{background:var(--ib-paper)!important;color:var(--ib-ink);-webkit-font-smoothing:antialiased}
 html.ib-on .app{background:var(--ib-paper)}
 .ib-hide{display:none!important}
