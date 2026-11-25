@@ -68,6 +68,20 @@
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>',
     up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16"/></svg>',
     bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></svg>',
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-6.5L20 11"/><path d="M6 9.8V19h4.5v-5h3v5H18V9.8"/></svg>',
+    wave: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 10.5v3"/></svg>',
+    layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg>',
+    spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 15.5l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6z"/></svg>',
+    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"/></svg>',
+    doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15.5h6"/></svg>',
+    refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1L19.5 9"/><path d="M19.5 4.5V9H15"/><path d="M19.5 12a7.5 7.5 0 0 1-13 5.1L4.5 15"/><path d="M4.5 19.5V15H9"/></svg>',
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>',
+    medal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="M9 14l-1.5 7L12 19l4.5 2L15 14"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.5V4.5h8l9 9-8 8z"/><circle cx="8" cy="9" r="1.3"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6"/></svg>',
+    gift: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5h16v4H4zM5.5 12.5V20h13v-7.5M12 8.5V20"/><path d="M12 8.5C10.3 4.5 6.8 5 8 8.5M12 8.5c1.7-4 5.2-3.5 4 0"/></svg>',
+    steps: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 6h2M4 12h2M4 18h2"/></svg>',
+    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 4.5h2l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h7.6a1.5 1.5 0 0 0 1.5-1.1l1.6-6.3H6.4"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>',
     arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
   };
 
@@ -188,13 +202,13 @@
             '<p class="ib-plan__note">كل مقطع حتى 30 ثانية · هوية صوتية ثابتة</p>' +
           '</article>' +
           '<article class="ib-plan">' +
-            '<p class="ib-plan__tag">للجهات والحملات الكبيرة</p><h3>VIP</h3>' +
+            '<p class="ib-plan__tag">للجهات والحملات الكبيرة</p><h3>طلب مخصّص</h3>' +
             '<p class="ib-plan__price"><small>يبدأ من</small> 1,500 ' + SAR + '</p>' +
             '<ul class="ib-list">' +
               li('أولوية قصوى في التنفيذ') + li('استشارة قبل التسجيل') + li('أكثر من تجربة أداء') + li('تواصل مباشر طوال المشروع') +
             '</ul>' +
-            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vip + '">اطلب VIP</a>' +
-            '<a class="ib-link" href="' + waLink('السلام عليكم، لديّ مشروع وأرغب في عرض سعر VIP') + '" target="_blank" rel="noopener">أو اطلب عرض سعر عبر الواتساب</a>' +
+            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vip + '">ابدأ طلبك المخصّص</a>' +
+            '<a class="ib-link" href="' + waLink('السلام عليكم، لديّ مشروع وأرغب في عرض سعر لطلب مخصّص') + '" target="_blank" rel="noopener">أو اطلب عرض سعر عبر الواتساب</a>' +
           '</article>' +
         '</div>' +
       '</div></section>' +
@@ -310,7 +324,7 @@
         '<div class="ib-next">' +
           nextCard(C.links.vo, 'مقطع واحد', 'يبدأ من 190 ر.س', 'لإعلان أو فيديو أو رد آلي.') +
           nextCard(C.links.packs, 'الباقات', 'المقطع من 279 ر.س', 'لمحتوى مستمر بهوية صوتية ثابتة.', true) +
-          nextCard(C.links.vip, 'طلب خاص VIP', 'يبدأ من 1,500 ر.س', 'للجهات والحملات الكبيرة.') +
+          nextCard(C.links.vip, 'طلب مخصّص', 'يبدأ من 1,500 ر.س', 'للجهات والحملات الكبيرة.') +
         '</div>' +
       '</div></section>' +
 
@@ -353,8 +367,8 @@
 
   /* ---------- الصفحات الداخلية: بنر موحّد + محتوى مقروء ---------- */
   var POLICIES = [
-    ['/pages/112429', 'من نحن؟'], ['/pages/112421', 'الشروط والأحكام'], ['/pages/112422', 'سياسة الاستبدال والاسترجاع'],
-    ['/pages/112420', 'سياسة الخصوصية'], ['/pages/112424', 'التراخيص']
+    ['/pages/112429', 'من نحن؟', 'user'], ['/pages/112421', 'الشروط والأحكام', 'doc'], ['/pages/112422', 'سياسة الاستبدال والاسترجاع', 'refresh'],
+    ['/pages/112420', 'سياسة الخصوصية', 'lock'], ['/pages/112424', 'التراخيص', 'medal']
   ];
   function pageHero(k, t, sub) {
     return '<section class="ib-hero ib-phero"><div class="ib-wrap ib-hero__in">' +
@@ -384,7 +398,7 @@
       if (body) {
         body.classList.add('ib-prose');
         var nav = '<nav class="ib-pnav" aria-label="صفحات المتجر">' + POLICIES.map(function (x) {
-          return '<a href="' + x[0] + '"' + (cur && cur[0] === x[0] ? ' class="is-on" aria-current="page"' : '') + '>' + x[1] + '</a>';
+          return '<a href="' + x[0] + '"' + (cur && cur[0] === x[0] ? ' class="is-on" aria-current="page"' : '') + '>' + I[x[2]] + x[1] + '</a>';
         }).join('') + '</nav>';
         body.insertAdjacentHTML('afterend', nav + ctaStrip());
       }
@@ -400,7 +414,7 @@
       sub.insertAdjacentHTML('beforebegin', pageHero(isPacks ? 'الباقات' : 'المتجر', t,
         isPacks ? 'لمحتوى مستمر بهوية صوتية ثابتة. 5 أو 10 مقاطع، المقطع يبدأ من 279 ر.س، وكل مقطع حتى 30 ثانية.' : ''));
       var list = $('.products-list', app);
-      if (list && isPacks) list.insertAdjacentHTML('afterend', '<p class="ib-note-c">تحتاج أكثر من 10 مقاطع أو مشروعًا خاصًا؟ <a href="' + C.links.vip + '">اطلب VIP</a> أو <a href="' + waLink('السلام عليكم، أرغب في باقة مخصّصة') + '" target="_blank" rel="noopener">تواصل معنا عبر الواتساب</a>.</p>');
+      if (list && isPacks) packsPage(list);
       return;
     }
 
@@ -428,12 +442,78 @@
     var d = $('#product-description .description-paragrah');
     if (!d || d.dataset.ib) return;
     d.dataset.ib = '1';
+    var HIC = [[/تشمله/, 'mic'], [/استمع|اسمع/, 'ear'], [/الأسعار|السعر/, 'tag'], [/مناسب/, 'target'], [/تحصل عليه/, 'gift'], [/مدة التنفيذ/, 'clock'], [/خطوات/, 'steps'], [/لمن/, 'user'], [/يميّز|يميز/, 'spark']];
     $$('h2', d).forEach(function (h2) {
-      if (/اسمع العي/.test(h2.textContent)) {
+      var hic = HIC.filter(function (m) { return m[0].test(h2.textContent); })[0];
+      if (hic && !$('.ib-h2ic', h2)) h2.insertAdjacentHTML('afterbegin', '<span class="ib-h2ic">' + I[hic[1]] + '</span>');
+      if (/اسمع العي|استمع قبل/.test(h2.textContent)) {
         var p = h2.nextElementSibling;
         if (p && p.tagName === 'P') { p.textContent = 'استمع إلى 12 لون أداء حقيقي، واختر الأقرب إلى مشروعك. '; p.insertAdjacentHTML('beforeend', '<a href="' + C.links.samples + '">اسمع العيّنات ←</a>'); }
       }
     });
+  }
+
+  /* ---------- صفحة الباقات ---------- */
+  function packsPage(list) {
+    if ($('.ib-packs')) return;
+    list.classList.add('ib-hide');
+    $$('.ib-note-c').forEach(function (n) { n.remove(); });
+    var single = 350;
+    var card = function (n, total, href, tag, hot) {
+      var per = Math.round(total / n), save = n * single - total;
+      return '<article class="ib-pk' + (hot ? ' is-hot' : '') + '">' +
+        '<p class="ib-pk__tag">' + (hot ? I.star : I.layers) + tag + '</p>' +
+        '<p class="ib-pk__big"><b>' + n + '</b><span>مقاطع</span></p>' +
+        '<p class="ib-pk__price">' + money(total) + ' ' + SAR + '</p>' +
+        '<p class="ib-pk__per"><b>' + per + ' ر.س</b> للمقطع · <em>توفّر ' + money(save) + ' ر.س</em></p>' +
+        '<ul class="ib-pk__list">' + [ 'مدة كل مقطع حتى 30 ثانية', 'الصوت والنبرة نفسهما في جميع المقاطع', 'عيّنة تعتمدها قبل التنفيذ', 'جدولة منظّمة للتسليم', 'ملفات MP3 وWAV جاهزة' ].map(li).join('') + '</ul>' +
+        '<a class="ib-btn ' + (hot ? 'ib-btn--accent' : 'ib-btn--ink') + ' ib-btn--block" href="' + href + '">اطلب باقة ' + n + ' مقاطع ' + I.arrow + '</a>' +
+      '</article>';
+    };
+    var html = '<section class="ib-packs"><div class="ib-wrap">' +
+      '<div class="ib-packs__grid">' +
+        card(5, 1490, C.links.p5, 'بداية مناسبة') +
+        card(10, 2790, C.links.p10, 'الأكثر طلبًا', true) +
+      '</div>' +
+      '<p class="ib-packs__cmp">' + I.tag + ' مقارنةً بالطلب الفردي: المقطع حتى 30 ثانية بـ <b>350 ر.س</b>، ومع الباقة يبدأ من <b>279 ر.س</b>.</p>' +
+      '<ol class="ib-packs__steps">' +
+        '<li><span>' + I.layers + '</span><b>اختر الباقة</b><small>5 أو 10 مقاطع بالسعر المخفّض.</small></li>' +
+        '<li><span>' + I.doc + '</span><b>أرسل النصوص</b><small>جاهزة ومدقّقة لغويًا مع الطلب أو عبر الواتساب.</small></li>' +
+        '<li><span>' + I.ear + '</span><b>اعتمد العيّنة</b><small>تسمع الأداء قبل التنفيذ الكامل.</small></li>' +
+        '<li><span>' + I.check + '</span><b>استلم مقاطعك</b><small>بحسب الجدول المتفق عليه.</small></li>' +
+      '</ol>' +
+      '<div class="ib-packs__custom"><span class="ib-packs__ic">' + I.spark + '</span><div><h3>تحتاج أكثر من 10 مقاطع؟</h3>' +
+        '<p>الطلب المخصّص للحملات والجهات والمشاريع الكبيرة، ويبدأ من 1,500 ر.س بحسب حجم المشروع.</p></div>' +
+        '<div class="ib-actions"><a class="ib-btn ib-btn--accent" href="' + C.links.vip + '">طلب مخصّص ' + I.arrow + '</a>' +
+        '<a class="ib-btn ib-btn--line-light" href="' + waLink('السلام عليكم، أرغب في باقة مخصّصة') + '" target="_blank" rel="noopener">' + I.wa + ' عبر الواتساب</a></div></div>' +
+    '</div></section>';
+    list.insertAdjacentHTML('beforebegin', html);
+  }
+
+  /* ---------- الهيدر: سطر كحلي واحد داخل البنر + أيقونات القائمة ---------- */
+  var MENU_IC = [[/الصفحة الرئيسية/, 'home'], [/العي[ّ]?نات/, 'wave'], [/التعليق الصوتي/, 'mic'], [/الباقات/, 'layers'], [/طلب (مخصّص|مخصص|خاص)/, 'spark']];
+  function decorateMenu() {
+    $$('header .main-nav a, .slide-menu a').forEach(function (a) {
+      if (a.dataset.ibMi) return;
+      var t = a.textContent.replace(/\s+/g, ' ').trim();
+      if (t === 'طلب خاص VIP') { a.textContent = 'طلب مخصّص'; t = 'طلب مخصّص'; }
+      var hit = MENU_IC.filter(function (m) { return m[0].test(t); })[0];
+      if (!hit || a.children.length > 1) return;
+      a.dataset.ibMi = '1';
+      a.innerHTML = '<span class="ib-mi">' + I[hit[1]] + '</span><span>' + t + '</span>' + (hit[1] === 'mic' ? '<span class="ib-x1">×1</span>' : '');
+    });
+  }
+  function headerB() {
+    document.documentElement.classList.add('ib-hb');
+    var wrap = $('header .top-main-menu-wrapper');
+    if (wrap && !$('.ib-hcart', wrap)) {
+      var badge = $('header .cart-badge');
+      wrap.insertAdjacentHTML('beforeend', '<a class="ib-hcart" href="/cart" aria-label="السلة">' + I.cart + '<span class="ib-hcart__n">' + ((badge && badge.textContent.trim()) || '') + '</span></a>');
+      try {
+        if (badge) new MutationObserver(function () { var n = $('.ib-hcart__n'); if (n) n.textContent = badge.textContent.trim(); }).observe(badge, { childList: true, characterData: true, subtree: true });
+      } catch (e) {}
+    }
+    decorateMenu();
   }
 
   /* ---------- الفوتر والقائمة ---------- */
@@ -442,7 +522,7 @@
     $$('.footer a').forEach(function (a) {
       var t = a.textContent.trim();
       if (t === 'العينات الصوتي' || t === 'العينات الصوتية') { a.textContent = 'العيّنات الصوتية'; a.setAttribute('href', C.links.samples); }
-      if (t === 'طلب خاص VIP') a.setAttribute('href', C.links.vip);
+      if (t === 'طلب خاص VIP' || t === 'طلب مخصّص') { a.textContent = 'طلب مخصّص'; a.setAttribute('href', C.links.vip); }
       if (t === 'باقات التعليق الصوتي') a.textContent = 'الباقات';
       if (t === 'الشكاوى والاقتراحات') { var p = a.closest('p'); if (p) p.classList.add('ib-hide'); }
     });
@@ -808,7 +888,7 @@
   /* ---------- بطاقات بصرية بدل صور المنتجات ---------- */
   var PV = {
     '3b457ceb': { tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
-    '105da1b6': { tag: 'للجهات والحملات', big: 'VIP', unit: '', sub: 'السعر حسب المشروع', chips: ['أولوية قصوى', 'استشارة قبل التسجيل', 'أكثر من تجربة أداء'], s: '01-documentary.mp3', t: 'طلب خاص', vip: true },
+    '105da1b6': { tag: 'للجهات والحملات', big: 'مخصّص', unit: '', sub: 'السعر حسب المشروع', chips: ['أولوية قصوى', 'استشارة قبل التسجيل', 'أكثر من تجربة أداء'], s: '01-documentary.mp3', t: 'طلب خاص', vip: true },
     '5071dee8': { tag: 'باقة', big: '5', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'بداية ذكية' },
     'b894de85': { tag: 'باقة', big: '10', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'الأكثر طلبًا' },
     '9ba65d77': { tag: 'باقة', big: '20', unit: 'مقطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'للحملات' },
@@ -902,6 +982,7 @@
     try { buildHome(); } catch (e) { console.warn('ib home', e); }
     try { buildSamples(); } catch (e) { console.warn('ib samples', e); }
     try { fixNav(); } catch (e) { console.warn('ib nav', e); }
+    try { headerB(); } catch (e) { console.warn('ib header', e); }
     try { buildInner(); } catch (e) { console.warn('ib inner', e); }
     try { fixDescription(); } catch (e) { console.warn('ib desc', e); }
     try { productVisual(); } catch (e) { console.warn('ib pvis', e); }
@@ -912,7 +993,7 @@
     try { fixCards(); } catch (e) { console.warn('ib cards', e); }
     /* كروت تنحمّل متأخر (قد يعجبك أيضًا) */
     var tm = null;
-    try { new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { try { fixCards(); cardTiles(); } catch (e) {} }, 150); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {}
+    try { new MutationObserver(function () { clearTimeout(tm); tm = setTimeout(function () { try { fixCards(); cardTiles(); decorateMenu(); } catch (e) {} }, 150); }).observe(document.body, { childList: true, subtree: true }); } catch (e) {}
     try { floatWA(); } catch (e) { console.warn('ib wa', e); }
   });
 })();
