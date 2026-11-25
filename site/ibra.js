@@ -166,7 +166,7 @@
 
       /* المزايا */
       '<section class="ib-feats"><div class="ib-wrap ib-feats__grid">' +
-        feat(I.mic, 'جودة استوديو', 'تسجيل ومعالجة احترافية، وملفات WAV وMP3 جاهزة.') +
+        feat(I.mic, 'استوديو احترافي', 'تسجيل ومعالجة احترافية، وملفات WAV وMP3 جاهزة.') +
         feat(I.ear, 'عيّنة قبل التنفيذ', 'تسمع الأداء وتعتمده قبل النسخة النهائية.') +
         feat(I.clock, 'تسليم سريع', 'من يومين إلى ثلاثة أيام عمل، أو خلال 24 ساعة.') +
         feat(I.wa, 'تنسيق مباشر', 'نتفق معك على النبرة والأسلوب عبر الواتساب.') +
@@ -183,7 +183,7 @@
       '<section class="ib-sec" id="ib-plans"><div class="ib-wrap">' +
         head('الأسعار', 'اختر ما', 'يناسب مشروعك.', 'أسعار واضحة دون مفاجآت، مع إمكانية التقسيط عبر تمارا وإمكان.') +
         '<div class="ib-plans">' +
-          '<article class="ib-plan">' +
+          '<article class="ib-plan"><span class="ib-x1c">×1</span>' +
             '<p class="ib-plan__tag">طلب فردي</p><h3>تعليق صوتي</h3>' +
             '<p class="ib-plan__price"><small>يبدأ من</small> 190 ' + SAR + '</p>' +
             '<ul class="ib-rows">' +
@@ -192,14 +192,13 @@
             '<p class="ib-plan__note">+200 ر.س للتسليم خلال 24 ساعة</p>' +
             '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vo + '">اطلب الآن</a>' +
           '</article>' +
-          '<article class="ib-plan ib-plan--feat">' +
-            '<p class="ib-plan__tag">للمحتوى المستمر</p><h3>الباقات</h3>' +
-            '<p class="ib-plan__price"><small>للمقطع من</small> 279 ' + SAR + '</p>' +
-            '<ul class="ib-rows ib-rows--links">' +
-              pack(C.links.p5, '5 مقاطع', 1490, 5) +
-              pack(C.links.p10, '10 مقاطع', 2790, 10, 'الأوفر') +
+          '<article class="ib-plan ib-plan--feat"><span class="ib-x1c">×5</span>' +
+            '<p class="ib-plan__tag">للمحتوى المستمر</p><h3>باقة 5 مقاطع</h3>' +
+            '<p class="ib-plan__price">1,490 ' + SAR + '</p>' +
+            '<ul class="ib-list">' +
+              li('298 ر.س للمقطع بدلًا من 350') + li('توفّر 260 ر.س') + li('كل مقطع حتى 30 ثانية') + li('هوية صوتية ثابتة في المقاطع كلها') +
             '</ul>' +
-            '<p class="ib-plan__note">كل مقطع حتى 30 ثانية · هوية صوتية ثابتة</p>' +
+            '<a class="ib-btn ib-btn--accent ib-btn--block" href="' + C.links.p5 + '">اطلب الباقة</a>' +
           '</article>' +
           '<article class="ib-plan">' +
             '<p class="ib-plan__tag">للجهات والحملات الكبيرة</p><h3>طلب مخصّص</h3>' +
@@ -207,8 +206,7 @@
             '<ul class="ib-list">' +
               li('أولوية قصوى في التنفيذ') + li('استشارة قبل التسجيل') + li('أكثر من تجربة أداء') + li('تواصل مباشر طوال المشروع') +
             '</ul>' +
-            '<a class="ib-btn ib-btn--ink ib-btn--block" href="' + C.links.vip + '">ابدأ طلبك المخصّص</a>' +
-            '<a class="ib-link" href="' + waLink('السلام عليكم، لديّ مشروع وأرغب في عرض سعر لطلب مخصّص') + '" target="_blank" rel="noopener">أو اطلب عرض سعر عبر الواتساب</a>' +
+            '<a class="ib-btn ib-btn--wa ib-btn--block" href="' + waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي') + '" target="_blank" rel="noopener">' + I.wa + ' تواصل عبر الواتساب</a>' +
           '</article>' +
         '</div>' +
       '</div></section>' +
@@ -216,14 +214,9 @@
       '<div class="ib-slot" data-slot="partners"></div>' +
 
       /* آلية العمل */
-      '<section class="ib-sec ib-sec--cream"><div class="ib-wrap">' +
+      '<section class="ib-sec ib-sec--cream ib-jsec"><div class="ib-wrap">' +
         head('آلية العمل', 'من الفكرة', 'إلى الملف النهائي.', '') +
-        '<ol class="ib-steps">' +
-          step('ترسل النص', 'نصًّا جاهزًا ومدقّقًا لغويًا.') +
-          step('ننسّق عبر الواتساب', 'نتفق على النبرة والأسلوب والمدة.') +
-          step('عيّنة للاعتماد', 'تسمع الأداء قبل التنفيذ الكامل.') +
-          step('التسليم', 'ملفات WAV وMP3 جاهزة للاستخدام.') +
-        '</ol>' +
+        journeyHTML() +
       '</div></section>' +
 
       reelsHTML() +
@@ -237,7 +230,7 @@
           faq('ما مدة التنفيذ؟', 'من يومين إلى ثلاثة أيام عمل بحسب طبيعة المشروع، ويمكنك اختيار التسليم خلال 24 ساعة مقابل 200 ر.س إضافية.') +
           faq('هل تشمل الخدمة كتابة النص؟', 'تشمل الخدمة التسجيل الصوتي فقط، ويُرسل النص جاهزًا ومدقّقًا لغويًا مع الطلب.') +
           faq('هل يمكن التعديل على التسجيل؟', 'نرسل إليك عيّنة لاعتمادها قبل النسخة النهائية، ونصحّح أي خطأ من جهتنا دون رسوم إضافية. ويُحتسب تغيير النص أو النبرة بعد بدء العمل بنسبة 50% من قيمة الخدمة.') +
-          faq('ما صيغ الملفات المسلّمة؟', 'ملفات MP3 أو WAV بجودة استوديو، جاهزة للإعلانات والفيديو والبودكاست.') +
+          faq('ما صيغ الملفات المسلّمة؟', 'ملفات MP3 أو WAV من استوديو احترافي، جاهزة للإعلانات والفيديو والبودكاست.') +
           faq('ما طرق الدفع المتاحة؟', 'أبل باي، ومدى، وفيزا، والتحويل البنكي، أو التقسيط عبر تمارا أو إمكان. ويُدفع كامل المبلغ مقدّمًا.') +
           faq('ما سياسة الاسترداد؟', 'عند الإلغاء قبل بدء التنفيذ يُسترد 50% من المبلغ، ولا يُسترد المبلغ بعد بدء التنفيذ. <a href="' + C.links.refund + '">التفاصيل</a>') +
         '</div>' +
@@ -324,7 +317,7 @@
         '<div class="ib-next">' +
           nextCard(C.links.vo, 'مقطع واحد', 'يبدأ من 190 ر.س', 'لإعلان أو فيديو أو رد آلي.') +
           nextCard(C.links.packs, 'الباقات', 'المقطع من 279 ر.س', 'لمحتوى مستمر بهوية صوتية ثابتة.', true) +
-          nextCard(C.links.vip, 'طلب مخصّص', 'يبدأ من 1,500 ر.س', 'للجهات والحملات الكبيرة.') +
+          nextCard(waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي'), 'طلب مخصّص', 'يبدأ من 1,500 ر.س', 'للجهات والحملات الكبيرة.') +
         '</div>' +
       '</div></section>' +
 
@@ -412,7 +405,7 @@
       var t = (($('.bread-title', sub) || {}).textContent || '').replace(/ /g, ' ').trim();
       var isPacks = /باقات/.test(t);
       sub.insertAdjacentHTML('beforebegin', pageHero(isPacks ? 'الباقات' : 'المتجر', t,
-        isPacks ? 'لمحتوى مستمر بهوية صوتية ثابتة. 5 أو 10 مقاطع، المقطع يبدأ من 279 ر.س، وكل مقطع حتى 30 ثانية.' : ''));
+        isPacks ? 'لمحتوى مستمر بهوية صوتية ثابتة: 5 مقاطع، المقطع بـ 298 ر.س بدلًا من 350، وكل مقطع حتى 30 ثانية.' : ''));
       var list = $('.products-list', app);
       if (list && isPacks) packsPage(list);
       return;
@@ -453,39 +446,70 @@
     });
   }
 
+  /* ---------- آلية العمل: رحلة تفاعلية ---------- */
+  var JOURNEY = [
+    ['doc', 'ترسل النص', 'نصًّا جاهزًا ومدقّقًا لغويًا، مع المدة والأسلوب الذي تريده.'],
+    ['wa', 'ننسّق عبر الواتساب', 'نتفق على النبرة والإيقاع وطريقة النطق قبل التسجيل.'],
+    ['ear', 'عيّنة للاعتماد', 'تسمع الأداء أولًا، ونعتمده معك قبل التنفيذ الكامل.'],
+    ['check', 'التسليم', 'ملفات WAV وMP3 نظيفة وجاهزة للنشر مباشرة.']
+  ];
+  function journeyHTML() {
+    return '<div class="ib-journey" data-ib-journey>' +
+      '<div class="ib-journey__wave" aria-hidden="true">' + waveBars(64, 3) + '</div>' +
+      '<ol class="ib-journey__steps">' + JOURNEY.map(function (j, i) {
+        return '<li' + (i === 0 ? ' class="is-on"' : '') + ' data-i="' + i + '"><button type="button">' +
+          '<span class="ib-journey__dot">' + I[j[0]] + '<i>' + (i + 1) + '</i></span>' +
+          '<b>' + j[1] + '</b><small>' + j[2] + '</small><span class="ib-journey__bar"><i></i></span></button></li>';
+      }).join('') + '</ol></div>';
+  }
+  function initJourney() {
+    var root = $('[data-ib-journey]');
+    if (!root || root.dataset.ok) return;
+    root.dataset.ok = '1';
+    var items = $$('.ib-journey__steps li', root), bars = $$('.ib-journey__wave i', root), cur = 0, timer = null, paused = false;
+    var set = function (i) {
+      cur = i;
+      items.forEach(function (li, k) { li.classList.toggle('is-on', k === i); li.classList.toggle('is-done', k < i); });
+      var upto = Math.round((i + 1) / items.length * bars.length);
+      bars.forEach(function (b, k) { b.classList.toggle('is-lit', k < upto); });
+      root.style.setProperty('--ib-j', String(i));
+    };
+    var tick = function () { if (!paused) set((cur + 1) % items.length); };
+    items.forEach(function (li, k) { $('button', li).addEventListener('click', function () { set(k); clearInterval(timer); timer = setInterval(tick, 3200); }); });
+    root.addEventListener('mouseenter', function () { paused = true; });
+    root.addEventListener('mouseleave', function () { paused = false; });
+    set(0);
+    var start = function () { if (!timer) timer = setInterval(tick, 3200); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); }); }, { threshold: .3 }).observe(root);
+    } else start();
+  }
+
   /* ---------- صفحة الباقات ---------- */
   function packsPage(list) {
     if ($('.ib-packs')) return;
     list.classList.add('ib-hide');
     $$('.ib-note-c').forEach(function (n) { n.remove(); });
-    var single = 350;
-    var card = function (n, total, href, tag, hot) {
-      var per = Math.round(total / n), save = n * single - total;
-      return '<article class="ib-pk' + (hot ? ' is-hot' : '') + '">' +
-        '<p class="ib-pk__tag">' + (hot ? I.star : I.layers) + tag + '</p>' +
-        '<p class="ib-pk__big"><b>' + n + '</b><span>مقاطع</span></p>' +
-        '<p class="ib-pk__price">' + money(total) + ' ' + SAR + '</p>' +
-        '<p class="ib-pk__per"><b>' + per + ' ر.س</b> للمقطع · <em>توفّر ' + money(save) + ' ر.س</em></p>' +
-        '<ul class="ib-pk__list">' + [ 'مدة كل مقطع حتى 30 ثانية', 'الصوت والنبرة نفسهما في جميع المقاطع', 'عيّنة تعتمدها قبل التنفيذ', 'جدولة منظّمة للتسليم', 'ملفات MP3 وWAV جاهزة' ].map(li).join('') + '</ul>' +
-        '<a class="ib-btn ' + (hot ? 'ib-btn--accent' : 'ib-btn--ink') + ' ib-btn--block" href="' + href + '">اطلب باقة ' + n + ' مقاطع ' + I.arrow + '</a>' +
-      '</article>';
-    };
     var html = '<section class="ib-packs"><div class="ib-wrap">' +
-      '<div class="ib-packs__grid">' +
-        card(5, 1490, C.links.p5, 'بداية مناسبة') +
-        card(10, 2790, C.links.p10, 'الأكثر طلبًا', true) +
+      '<div class="ib-packs__grid ib-packs__grid--one">' +
+        '<article class="ib-pk is-hot"><span class="ib-x1c">×5</span>' +
+          '<p class="ib-pk__tag">' + I.star + 'للمحتوى المستمر</p>' +
+          '<p class="ib-pk__big"><b>5</b><span>مقاطع</span></p>' +
+          '<p class="ib-pk__price">1,490 ' + SAR + '</p>' +
+          '<p class="ib-pk__per"><b>298 ر.س</b> للمقطع بدلًا من 350 · <em>توفّر 260 ر.س</em></p>' +
+          '<ul class="ib-pk__list">' + ['مدة كل مقطع حتى 30 ثانية', 'الصوت والنبرة نفسهما في جميع المقاطع', 'عيّنة تعتمدها قبل التنفيذ', 'جدولة منظّمة للتسليم', 'ملفات MP3 وWAV جاهزة'].map(li).join('') + '</ul>' +
+          '<a class="ib-btn ib-btn--accent ib-btn--block" href="' + C.links.p5 + '">اطلب الباقة ' + I.arrow + '</a>' +
+        '</article>' +
       '</div>' +
-      '<p class="ib-packs__cmp">' + I.tag + ' مقارنةً بالطلب الفردي: المقطع حتى 30 ثانية بـ <b>350 ر.س</b>، ومع الباقة يبدأ من <b>279 ر.س</b>.</p>' +
       '<ol class="ib-packs__steps">' +
-        '<li><span>' + I.layers + '</span><b>اختر الباقة</b><small>5 أو 10 مقاطع بالسعر المخفّض.</small></li>' +
+        '<li><span>' + I.layers + '</span><b>اطلب الباقة</b><small>5 مقاطع بسعر مخفّض.</small></li>' +
         '<li><span>' + I.doc + '</span><b>أرسل النصوص</b><small>جاهزة ومدقّقة لغويًا مع الطلب أو عبر الواتساب.</small></li>' +
         '<li><span>' + I.ear + '</span><b>اعتمد العيّنة</b><small>تسمع الأداء قبل التنفيذ الكامل.</small></li>' +
         '<li><span>' + I.check + '</span><b>استلم مقاطعك</b><small>بحسب الجدول المتفق عليه.</small></li>' +
       '</ol>' +
-      '<div class="ib-packs__custom"><span class="ib-packs__ic">' + I.spark + '</span><div><h3>تحتاج أكثر من 10 مقاطع؟</h3>' +
+      '<div class="ib-packs__custom"><span class="ib-packs__ic">' + I.spark + '</span><div><h3>تحتاج أكثر من 5 مقاطع أو مشروعًا خاصًا؟</h3>' +
         '<p>الطلب المخصّص للحملات والجهات والمشاريع الكبيرة، ويبدأ من 1,500 ر.س بحسب حجم المشروع.</p></div>' +
-        '<div class="ib-actions"><a class="ib-btn ib-btn--accent" href="' + C.links.vip + '">طلب مخصّص ' + I.arrow + '</a>' +
-        '<a class="ib-btn ib-btn--line-light" href="' + waLink('السلام عليكم، أرغب في باقة مخصّصة') + '" target="_blank" rel="noopener">' + I.wa + ' عبر الواتساب</a></div></div>' +
+        '<div class="ib-actions"><a class="ib-btn ib-btn--accent" href="' + waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي') + '" target="_blank" rel="noopener">' + I.wa + ' تواصل عبر الواتساب</a></div></div>' +
     '</div></section>';
     list.insertAdjacentHTML('beforebegin', html);
   }
@@ -494,17 +518,20 @@
   var MENU_IC = [[/الصفحة الرئيسية/, 'home'], [/العي[ّ]?نات/, 'wave'], [/التعليق الصوتي/, 'mic'], [/الباقات/, 'layers'], [/طلب (مخصّص|مخصص|خاص)/, 'spark']];
   function decorateMenu() {
     $$('header .main-nav a, .slide-menu a').forEach(function (a) {
-      if (a.dataset.ibMi) return;
       var t = a.textContent.replace(/\s+/g, ' ').trim();
-      if (t === 'طلب خاص VIP') { a.textContent = 'طلب مخصّص'; t = 'طلب مخصّص'; }
-      var hit = MENU_IC.filter(function (m) { return m[0].test(t); })[0];
-      if (!hit || a.children.length > 1) return;
-      a.dataset.ibMi = '1';
-      a.innerHTML = '<span class="ib-mi">' + I[hit[1]] + '</span><span>' + t + '</span>' + (hit[1] === 'mic' ? '<span class="ib-x1">×1</span>' : '');
+      if (/^طلب (خاص VIP|مخصّص|مخصص)$/.test(t) && !a.dataset.ibWa) {
+        a.dataset.ibWa = '1'; a.textContent = 'طلب مخصّص';
+        a.setAttribute('href', waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي')); a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
+      }
     });
   }
   function headerB() {
     document.documentElement.classList.add('ib-hb');
+    if (!$('#ib-hb-css')) document.head.insertAdjacentHTML('beforeend', '<style id="ib-hb-css">' +
+      'html.ib-on header .upper-bar,html.ib-on header .announcement-bar{display:none!important}' +
+      '@media(min-width:992px){html.ib-hb header .search-header{display:none!important}html.ib-hb body header>.dark{height:64px!important;background:linear-gradient(180deg,#0a2430,#0b2734)!important;border:0!important}html.ib-hb body header>.dark>.div-bg-absolute{background:transparent!important}}' +
+      '@media(max-width:991px){html.ib-hb body header .search-header{background:#0b2734!important}html.ib-hb header .search-header .image-logo,html.ib-hb header .sm-search-icon{display:none!important}}' +
+      '</style>');
     var wrap = $('header .top-main-menu-wrapper');
     if (wrap && !$('.ib-hcart', wrap)) {
       var badge = $('header .cart-badge');
@@ -522,7 +549,7 @@
     $$('.footer a').forEach(function (a) {
       var t = a.textContent.trim();
       if (t === 'العينات الصوتي' || t === 'العينات الصوتية') { a.textContent = 'العيّنات الصوتية'; a.setAttribute('href', C.links.samples); }
-      if (t === 'طلب خاص VIP' || t === 'طلب مخصّص') { a.textContent = 'طلب مخصّص'; a.setAttribute('href', C.links.vip); }
+      if (t === 'طلب خاص VIP' || t === 'طلب مخصّص') { a.textContent = 'طلب مخصّص'; a.setAttribute('href', waLink('السلام عليكم، أرغب في طلب تعليق صوتي مخصّص لمشروعي')); a.setAttribute('target', '_blank'); }
       if (t === 'باقات التعليق الصوتي') a.textContent = 'الباقات';
       if (t === 'الشكاوى والاقتراحات') { var p = a.closest('p'); if (p) p.classList.add('ib-hide'); }
     });
@@ -635,7 +662,7 @@
     return '<section class="ib-hero ib-hero--a" data-ib-card>' + bg + '<div class="ib-wrap ib-hero__in">' +
       '<div class="ib-badge-live"><span class="ib-dot"></span>' + odo(1000) + '<span>مشروع صوتي سلّمته</span></div>' +
       '<h1><span class="ib-sw">صوت</span> يوصّل فكرتك<br><em>من أول كلمة.</em></h1>' +
-      '<p class="ib-lead">إعلانات، وثائقيات، رد آلي، وهوية صوتية — بجودة استوديو.</p>' +
+      '<p class="ib-lead">إعلانات، وثائقيات، رد آلي، وهوية صوتية — من استوديو احترافي.</p>' +
       '<div class="ib-actions ib-actions--center">' + order + playPill('اسمع صوتي') + '</div>' +
     '</div></section>';
   }
@@ -808,14 +835,47 @@
     var cbs = $$('.custom-checkbox-input', info).filter(function (cb) { var f = cb.closest('.form-group'); return !(f && f.classList.contains('ib-hide')); });
     var base = basePrice(info);
 
-    /* 1) السعر يتحدّث مع اختيار المدة والتسليم السريع */
+    var btnAdd = function () { return $$('button', info).filter(function (b) { return /أضف إلى السلة/.test(b.textContent); })[0]; };
+    /* 0) عدد المقاطع (1–4) للتعليق الصوتي — من 5 فأكثر الباقة أوفر */
+    var qSel = $('#product-quantity, select[name="quantity"]', info);
+    var qty = function () { return qSel ? (parseInt(qSel.value, 10) || 1) : 1; };
+    if (qSel && sel && !$('.ib-qty', info)) {
+      var MAXQ = 4;
+      var grp = sel.closest('.form-group') || sel.parentNode;
+      var qBox = h('<div class="ib-qty"><p class="ib-qty__l">عدد المقاطع <small>بنفس المدة</small></p>' +
+        '<div class="ib-qty__row"><button type="button" class="ib-qty__b" data-d="1" aria-label="زيادة">+</button>' +
+        '<output class="ib-qty__n">1</output><button type="button" class="ib-qty__b" data-d="-1" aria-label="إنقاص">−</button>' +
+        '<div class="ib-qty__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i></div></div>' +
+        '<a class="ib-qty__nudge" href="' + C.links.p5 + '">' + I.spark + '<span>تحتاج 5 مقاطع؟ <b>الباقة بـ 1,490 ر.س</b> (298 للمقطع) أوفر لك.</span></a></div>');
+      grp.parentNode.insertBefore(qBox, grp);
+      var qGrp = qSel.closest('.form-group, .quantity, .product-quantity') || qSel.parentElement;
+      if (qGrp && !qGrp.contains(sel) && !qGrp.contains(btnAdd())) qGrp.classList.add('ib-sr-box'); else qSel.classList.add('ib-sr-box');
+      var setQ = function (n) {
+        n = Math.max(1, Math.min(MAXQ, n));
+        qSel.value = String(n); qSel.dispatchEvent(new Event('change', { bubbles: true }));
+        $('.ib-qty__n', qBox).textContent = n;
+        $$('.ib-qty__dots i', qBox).forEach(function (d, k) { d.classList.toggle('is-on', k < n); });
+        qBox.classList.toggle('is-max', n >= MAXQ);
+        if (typeof render === 'function') render();
+      };
+      $$('.ib-qty__b', qBox).forEach(function (b) { b.addEventListener('click', function () {
+        var d = parseInt(b.dataset.d, 10);
+        if (d > 0 && qty() >= MAXQ) { qBox.classList.add('is-bump'); setTimeout(function () { qBox.classList.remove('is-bump'); }, 600); return; }
+        setQ(qty() + d);
+      }); });
+      setQ(1);
+    }
+
+    /* 1) السعر يتحدّث مع اختيار المدة والتسليم السريع وعدد المقاطع */
+    var render;
     if (priceEl && base > 0 && (sel || cbs.length)) {
-      var render = function () {
+      render = function () {
         var total = base, chosen = !sel;
         if (sel) { var o = sel.options[sel.selectedIndex]; if (o && o.value) { total += plusOf(o.textContent); chosen = true; } }
         cbs.forEach(function (cb) { if (cb.checked) { var l = cb.closest('label'); total += plusOf(l ? l.textContent : ''); } });
+        var n = qty();
         priceEl.classList.add('ib-price', 'ib-price--live');
-        priceEl.innerHTML = '<small>' + (chosen ? 'الإجمالي' : 'يبدأ من') + '</small> ' + money(total) + ' ' + SAR;
+        priceEl.innerHTML = '<small>' + (chosen ? (n > 1 ? 'الإجمالي لـ ' + n + ' مقاطع' : 'الإجمالي') : 'يبدأ من') + '</small> ' + money(chosen ? total * n : total) + ' ' + SAR;
       };
       if (sel) sel.addEventListener('change', render);
       cbs.forEach(function (cb) { cb.addEventListener('change', render); });
@@ -887,9 +947,9 @@
 
   /* ---------- بطاقات بصرية بدل صور المنتجات ---------- */
   var PV = {
-    '3b457ceb': { tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
+    '3b457ceb': { x: '×1', tag: 'طلب فردي', big: '60', unit: 'ثانية أو أقل', sub: 'إعلان، وثائقي، رد آلي، وأكثر', chips: ['2–3 أيام عمل', 'عيّنة قبل التنفيذ', 'MP3 · WAV'], s: '02-ad.mp3', t: 'تعليق صوتي' },
     '105da1b6': { tag: 'للجهات والحملات', big: 'مخصّص', unit: '', sub: 'السعر حسب المشروع', chips: ['أولوية قصوى', 'استشارة قبل التسجيل', 'أكثر من تجربة أداء'], s: '01-documentary.mp3', t: 'طلب خاص', vip: true },
-    '5071dee8': { tag: 'باقة', big: '5', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'بداية ذكية' },
+    '5071dee8': { x: '×5', tag: 'باقة', big: '5', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'بداية ذكية' },
     'b894de85': { tag: 'باقة', big: '10', unit: 'مقاطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'الأكثر طلبًا' },
     '9ba65d77': { tag: 'باقة', big: '20', unit: 'مقطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'للحملات' },
     '5c5774fb': { tag: 'باقة', big: '50', unit: 'مقطع', sub: 'كل مقطع حتى 30 ثانية', chips: ['حتى 30 ثانية للمقطع', 'هوية صوتية ثابتة', 'MP3 · WAV'], s: '02-ad.mp3', t: 'الأوفر' }
@@ -908,7 +968,7 @@
     wrap.classList.add('ib-hide');
     $$('.lg-thumbs, .product-images-carousel-thumbs').forEach(function (t) { t.classList.add('ib-hide'); });
     wrap.parentNode.insertBefore(h(
-      '<div class="ib-pvis' + (v.vip ? ' ib-pvis--vip' : '') + '" data-ib-card>' +
+      '<div class="ib-pvis' + (v.vip ? ' ib-pvis--vip' : '') + '" data-ib-card>' + (v.x ? '<span class="ib-x1c">' + v.x + '</span>' : '') +
         '<div class="ib-pvis__top"><span class="ib-pvis__tag">' + v.tag + '</span></div>' +
         '<div class="ib-pvis__mid">' +
           '<p class="ib-pvis__t">' + v.t + '</p>' +
@@ -983,6 +1043,7 @@
     try { buildSamples(); } catch (e) { console.warn('ib samples', e); }
     try { fixNav(); } catch (e) { console.warn('ib nav', e); }
     try { headerB(); } catch (e) { console.warn('ib header', e); }
+    try { initJourney(); } catch (e) { console.warn('ib journey', e); }
     try { buildInner(); } catch (e) { console.warn('ib inner', e); }
     try { fixDescription(); } catch (e) { console.warn('ib desc', e); }
     try { productVisual(); } catch (e) { console.warn('ib pvis', e); }

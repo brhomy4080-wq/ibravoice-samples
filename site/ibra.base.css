@@ -827,6 +827,68 @@ html.ib-is-cat .subTitle-detail,html.ib-is-cat .products-list.ib-hide{display:no
 }
 .ib-pvis--vip .ib-pvis__big b,.ib-tile--vip .ib-tile__big b{background:none!important;-webkit-text-fill-color:currentColor;color:var(--ib-accent)!important}
 
+/* v1.13 القائمة: توهّج بسيط بدل الخلفية البيضاء، ×1، عدد المقاطع، زر السلة، رحلة «من الفكرة إلى الملف» */
+html.ib-on header .main-nav li,html.ib-on header .main-nav li:hover,html.ib-on header .main-nav a,html.ib-on header .main-nav a:hover,html.ib-on header .main-nav a:focus{background:transparent!important;box-shadow:none!important}
+html.ib-on.ib-hb header .main-nav a:hover,html.ib-on.ib-hb header .main-nav a:focus-visible{color:#fff!important;opacity:1;text-shadow:0 0 14px rgba(234,156,51,.9),0 0 3px rgba(234,156,51,.5)}
+.ib-plan{position:relative}
+.ib-x1c{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:28px;padding:0 10px;border-radius:999px;border:1.5px solid rgba(234,156,51,.55);background:rgba(234,156,51,.1);color:var(--ib-accent-d);font-size:14px;font-weight:700;direction:ltr;letter-spacing:.5px}
+.ib-plan--feat .ib-x1c,.ib-pk.is-hot .ib-x1c,.ib-pvis .ib-x1c{color:var(--ib-accent);background:rgba(234,156,51,.14)}
+.ib-pvis .ib-x1c{top:24px;left:24px}
+/* زر الإضافة للسلة: لا يتحوّل للأزرق */
+html.ib-on .btn-add-to-cart:hover,html.ib-on .btn-add-to-cart:focus,html.ib-on .btn-add-to-cart:active{background:#d98b22!important;border-color:#d98b22!important;color:var(--ib-ink)!important;box-shadow:0 10px 24px -10px rgba(217,139,34,.7)!important;transform:translateY(-1px)}
+html.ib-on .btn-add-to-cart:hover *{color:var(--ib-ink)!important}
+/* عدد المقاطع */
+.ib-sr-box{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+.ib-qty{margin:4px 0 18px}
+.ib-qty__l{margin:0 0 8px;font-weight:700;color:var(--ib-ink)}
+.ib-qty__l small{font-weight:500;color:var(--ib-muted);font-size:13px;margin-inline-start:6px}
+.ib-qty__row{display:flex;align-items:center;gap:10px}
+.ib-qty__b{width:44px;height:44px;border-radius:14px;border:1.5px solid var(--ib-line);background:#fff;color:var(--ib-ink);font-size:22px;font-weight:700;line-height:1;cursor:pointer;transition:border-color .2s,background .2s}
+.ib-qty__b:hover{border-color:var(--ib-accent);background:var(--ib-accent-soft)}
+.ib-qty__n{min-width:44px;text-align:center;font-size:24px;font-weight:700;color:var(--ib-ink)}
+.ib-qty__dots{display:flex;gap:6px;margin-inline-start:8px}
+.ib-qty__dots i{width:10px;height:22px;border-radius:4px;background:var(--ib-line);transition:background .25s,transform .25s}
+.ib-qty__dots i.is-on{background:var(--ib-accent);transform:scaleY(1.15)}
+.ib-qty__nudge{display:none;align-items:center;gap:10px;margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--ib-ink);color:#fff!important;text-decoration:none!important;font-size:14px;line-height:1.7;animation:ibIn .35s ease-out}
+.ib-qty__nudge b{color:var(--ib-accent)}
+.ib-qty__nudge svg{width:20px;height:20px;color:var(--ib-accent);flex:none}
+.ib-qty.is-max .ib-qty__nudge{display:flex}
+.ib-qty.is-bump .ib-qty__nudge{animation:ibShake .5s ease-in-out}
+/* صفحة الباقات: باقة واحدة */
+.ib-packs__grid--one{grid-template-columns:minmax(0,520px);justify-content:center}
+.ib-pk{position:relative}
+/* رحلة «من الفكرة إلى الملف النهائي» */
+.ib-journey{position:relative;margin-top:10px;padding:30px 26px 26px;border-radius:28px;background:radial-gradient(700px 300px at 100% 0,#1f5a73 0,transparent 60%),linear-gradient(160deg,#0d2f3e,var(--ib-ink) 60%,#071c25);color:#fff;overflow:hidden}
+.ib-journey__wave{display:flex;align-items:center;gap:4px;height:56px;margin:0 4px 22px}
+.ib-journey__wave i{flex:1;height:calc(var(--s)*100%);border-radius:3px;background:rgba(255,255,255,.14);transition:background .6s,transform .6s}
+.ib-journey__wave i.is-lit{background:linear-gradient(180deg,#f6c27a,var(--ib-accent));animation:ibWave 1s ease-in-out infinite alternate;animation-delay:var(--d)}
+.ib-journey__steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ib-journey__steps button{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;width:100%;height:100%;padding:18px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);cursor:pointer;transition:background .35s,border-color .35s,transform .35s}
+.ib-journey__steps button:hover{border-color:rgba(234,156,51,.45)}
+.ib-journey__dot{position:relative;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.07);color:#c9d6dc;transition:background .35s,color .35s,box-shadow .35s}
+.ib-journey__dot svg{width:22px;height:22px}
+.ib-journey__dot i{position:absolute;top:-6px;inset-inline-end:-6px;width:20px;height:20px;border-radius:50%;background:var(--ib-ink);border:1px solid rgba(255,255,255,.2);font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#c9d6dc}
+.ib-journey__steps b{font-size:17px;color:#fff}
+.ib-journey__steps small{font-size:13.5px;line-height:1.7;color:#a9bcc4}
+.ib-journey__bar{display:block;height:3px;margin-top:auto;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.ib-journey__bar i{display:block;height:100%;width:0;background:var(--ib-accent)}
+.ib-journey__steps li.is-done .ib-journey__dot{background:rgba(234,156,51,.16);color:var(--ib-accent)}
+.ib-journey__steps li.is-done .ib-journey__bar i{width:100%}
+.ib-journey__steps li.is-on button{background:rgba(234,156,51,.1);border-color:rgba(234,156,51,.6);transform:translateY(-4px)}
+.ib-journey__steps li.is-on .ib-journey__dot{background:var(--ib-accent);color:var(--ib-ink);box-shadow:0 0 0 6px rgba(234,156,51,.15),0 0 28px rgba(234,156,51,.45)}
+.ib-journey__steps li.is-on .ib-journey__dot i{background:#fff;color:var(--ib-ink)}
+.ib-journey__steps li.is-on .ib-journey__bar i{width:100%;transition:width 3.2s linear}
+@media (max-width:767px){
+  .ib-journey{padding:22px 16px 18px}
+  .ib-journey__wave{height:40px}
+  .ib-journey__steps{grid-template-columns:1fr}
+  .ib-journey__steps button{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:12px;padding:14px}
+  .ib-journey__steps small{flex-basis:100%;display:none}
+  .ib-journey__steps li.is-on small{display:block}
+  .ib-journey__bar{flex-basis:100%}
+  .ib-x1c{top:12px;left:12px}
+}
+
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
