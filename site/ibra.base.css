@@ -1027,6 +1027,9 @@ html.ib-on .search-header{backdrop-filter:none!important;-webkit-backdrop-filter
 .ib-jr__tab.is-on .ib-jr__ic{background:var(--ib-accent);color:var(--ib-ink);box-shadow:0 0 0 6px rgba(234,156,51,.22)}
 @media (max-width:767px){.ib-jr__tab .ib-jr__ic,.ib-jr__tab.is-done .ib-jr__ic{box-shadow:none}}
 
+/* v1.23 — ملاحظة التسليم على دفعات تحت زر الباقة */
+.ib-plan__note{margin:10px 0 0;text-align:center;font-size:13px;line-height:1.6;opacity:.75}
+
 /* أثناء تحميل الواجهة: نخفي المحتوى الأصلي، ويرجع لحاله بعد 4 ثواني لو صار شي */
 .app-content{opacity:0;animation:ibReveal .01s 4s forwards}
 html.ib-on .app-content{opacity:1;animation:none}
